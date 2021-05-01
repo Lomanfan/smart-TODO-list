@@ -2,11 +2,11 @@
 -- INSERT INTO users (name) VALUES ('Alice');
 -- INSERT INTO users (name) VALUES ('Kira');
 
-INSERT INTO users (id, name, email, password)
-VALUES (1, 'Anne Parks', 'anne@gmail.com', '123'),
-  (2, 'Bobby West', 'bobby@gmail.com', '123'),
-  (3, 'Carl Hart', 'carl@gmail.com', '123')
-  (4, 'Donna Luna', 'donna@gmail.com', '123');
+INSERT INTO users ( name, email, password)
+VALUES ('Anne Parks', 'anne@gmail.com', '123'),
+  ('Bobby West', 'bobby@gmail.com', '123'),
+  ('Carl Hart', 'carl@gmail.com', '123'),
+  ('Donna Luna', 'donna@gmail.com', '123');
 
 
 
