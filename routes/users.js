@@ -7,15 +7,16 @@
 
 const express = require('express');
 const router  = express.Router();
+const db = require()
 
 module.exports = (db) => {
-  router.get("/", (req, res) => {
-    // console.dir("req.session.userId: "+req)
-    // console.dir(req)
+  router.get("/:user_id", (req, res) => {
+
     db.query(`SELECT *
     FROM users
     join todolist on user_id = users.id
-    join category on category_id = category.id;`)
+    join category on category_id = category.id
+    where users.id = ${req.params.user_id};`)
       .then(data => {
         const userTodoLists = data.rows;
         // res.json({ userTodoLists });
