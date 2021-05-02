@@ -19,7 +19,7 @@ module.exports = (db) => {
     // where users.id = ${req.params.user_id};`)
     // console.log(req.params)
     const user = req.params;
-    console.log(user)
+    console.log(user);
      db.getTodo(user)
       .then(data => {
         const userTodoLists = data;
