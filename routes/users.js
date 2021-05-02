@@ -22,6 +22,7 @@ module.exports = (db) => {
      db.getTodo(user)
       .then(data => {
         const userTodoLists = data;
+        console.log(userTodoLists)
         // res.json({ userTodoLists });
         //redirect to users todo list page
         res.render("show",{userTodoLists});
