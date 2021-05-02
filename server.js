@@ -41,7 +41,7 @@ const database = require('./routes/database');
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 // app.use("/api/users", usersRoutes(db));
-app.use("/user/", usersRoutes(db));
+app.use("/user/", usersRoutes(database));
 // app.use("/api/widgets", widgetsRoutes(db));
 // Note: mount other resources here, using the same pattern above
 
@@ -58,9 +58,6 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
-// app.get("/:id", (req, res) => {
-//   res.render("show");
-// });
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);

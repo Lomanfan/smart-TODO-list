@@ -7,7 +7,7 @@
 
 const express = require('express');
 const router  = express.Router();
-const db = require()
+// const db = require()
 
 module.exports = (db) => {
   router.get("/:user_id", (req, res) => {
@@ -17,9 +17,11 @@ module.exports = (db) => {
     // join todolist on user_id = users.id
     // join category on category_id = category.id
     // where users.id = ${req.params.user_id};`)
-     getTodo
+    // console.log(req.params)
+    const user = req.params;
+     db.getTodo(user)
       .then(data => {
-        const userTodoLists = data.rows;
+        const userTodoLists = data;
         // res.json({ userTodoLists });
         //redirect to users todo list page
         res.render("show",{userTodoLists});

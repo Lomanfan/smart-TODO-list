@@ -1,5 +1,5 @@
-const todolist = require('./db/seeds/03_todolist.sql');
-const users = require('./db/seeds/01_users.sql');
+// const todolist = require('./db/seeds/03_todolist.sql');
+// const users = require('./db/seeds/01_users.sql');
 const { Pool } = require('pg');
 const pool = new Pool({
   user: 'labber',
@@ -10,9 +10,10 @@ const pool = new Pool({
 
 pool.connect();
 
-const getToDo = (text) => {
+const getToDo = (user) => {
   const queryParams = [];
-  queryParams.push(`%${text.params.user_id}%`);
+  console.log(user)
+  queryParams.push(`${user.user_id}`);
   let queryString = `SELECT *
   FROM users
   join todolist on user_id = users.id
