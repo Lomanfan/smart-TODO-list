@@ -23,6 +23,7 @@
     "pg-native": "^3.0.0"
   },
   "devDependencies": {
+    "cookie-session": "^1.4.0",
     "nodemon": "^1.19.1"
   }
 }
