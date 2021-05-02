@@ -10,11 +10,12 @@ const router  = express.Router();
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
+    // console.dir("req.session.userId: "+req)
+    // console.dir(req)
     db.query(`SELECT *
     FROM users
     join todolist on user_id = users.id
-    join category on category_id = category.id
-    where user.id = req.pram;`)
+    join category on category_id = category.id;`)
       .then(data => {
         const userTodoLists = data.rows;
         // res.json({ userTodoLists });
