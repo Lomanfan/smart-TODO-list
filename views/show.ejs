@@ -17,7 +17,8 @@
           <% for(let userTodoList of userTodoLists) { %>
             <form action="" method="POST" class="">
               <input type ="checkbox" id= "<%=userTodoList.id %>" name ="<%=userTodoList.id %>" class = "checkbox">
-              <label for="<%=userTodoList.id %>"> <%=userTodoList.id %></label>
+              <label for="<%=userTodoList.id %>"> <%=userTodoList.user_id %></label>
+              <label for="<%=userTodoList.id %>"> <%=userTodoList.user_input %></label>
               <button >delete</button>
             </form>
             <form action="" method="POST" class="">
@@ -26,13 +27,9 @@
             </form>
             <% } %>
           </li>
-
-
-
         </ol>
       </section>
       <script type="./routes/users.js"></script>
-
       <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
       <script type="text/javascript" src="/scripts/app.js"></script>
     </body>
