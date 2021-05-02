@@ -41,13 +41,8 @@ const todoRoutes = require("./routes/todo");
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 // app.use("/api/users", usersRoutes(db));
-<<<<<<< HEAD
 app.use("/users", usersRoutes(db));
 app.use("/api/todo", todoRoutes(db));
-=======
-app.use("/user/", usersRoutes(db));
-// app.use("/api/widgets", widgetsRoutes(db));
->>>>>>> c1e4dbfe1259db84c70393d78103036c3d3d7d41
 // Note: mount other resources here, using the same pattern above
 
 // login
