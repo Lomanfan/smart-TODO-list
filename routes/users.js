@@ -10,7 +10,7 @@ const router  = express.Router();
 // const db = require()
 
 module.exports = (db) => {
-  router.get("/", (req, res) => {
+  router.get("/:use_id", (req, res) => {
 
     // db.query(`SELECT *
     // FROM users
