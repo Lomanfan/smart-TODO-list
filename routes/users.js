@@ -10,10 +10,16 @@ const router  = express.Router();
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
-    db.query(`SELECT * FROM users;`)
+    db.query(`SELECT *
+    FROM users
+    join todolist on user_id = users.id
+    join category on category_id = category.id
+    where user.id = req.pram;`)
       .then(data => {
-        const users = data.rows;
-        res.json({ users });
+        const userTodoLists = data.rows;
+        // res.json({ userTodoLists });
+        //redirect to users todo list page
+        res.render("show",{userTodoLists});
       })
       .catch(err => {
         res
