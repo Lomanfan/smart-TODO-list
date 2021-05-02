@@ -12,8 +12,12 @@ pool.connect();
 
 const getToDo = (text) => {
   const queryParams = [];
-  let queryString = `
-  SELECT *
-  FROM todo
-  `
+  queryParams.push(`%${text.params.user_id}%`);
+  let queryString = `SELECT *
+  FROM users
+  join todolist on user_id = users.id
+  join category on category_id = category.id
+  where users.id = $${queryParams.length};`
+  return pool.query(queryString, queryParams).then((res) => res.rows);
 }
+exports.getTodo = getToDo;

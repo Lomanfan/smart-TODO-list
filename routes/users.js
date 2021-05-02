@@ -12,11 +12,12 @@ const db = require()
 module.exports = (db) => {
   router.get("/:user_id", (req, res) => {
 
-    db.query(`SELECT *
-    FROM users
-    join todolist on user_id = users.id
-    join category on category_id = category.id
-    where users.id = ${req.params.user_id};`)
+    // db.query(`SELECT *
+    // FROM users
+    // join todolist on user_id = users.id
+    // join category on category_id = category.id
+    // where users.id = ${req.params.user_id};`)
+     getTodo
       .then(data => {
         const userTodoLists = data.rows;
         // res.json({ userTodoLists });

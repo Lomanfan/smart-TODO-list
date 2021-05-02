@@ -35,6 +35,8 @@ app.use(express.static("public"));
 // Note: Feel free to replace the example routes below with your own
 const usersRoutes = require("./routes/users");
 const todoRoutes = require("./routes/todo");
+//require the route from database.js
+const database = require('./routes/database');
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
