@@ -10,4 +10,10 @@ const pool = new Pool({
 
 pool.connect();
 
-const getProperties
+const getToDo = (text) => {
+  const queryParams = [];
+  let queryString = `
+  SELECT *
+  FROM todo
+  `
+}
