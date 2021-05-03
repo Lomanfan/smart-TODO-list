@@ -26,6 +26,7 @@
   },
   "devDependencies": {
     "cookie-session": "^1.4.0",
-    "nodemon": "^1.19.1"
+    "nodemon": "^1.19.1",
+    "request": "^2.88.2"
   }
 }
