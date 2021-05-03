@@ -1,9 +1,18 @@
 // See: https://sass-lang.com/
 
 body {
-  background-color: #EEE;
+  background-color: white;
 
   h1 {
     color: #244751;
   }
+}
+
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 1rem;
+  // border-radius: 10px;
+  // border: 3px solid #BADA55;
 }

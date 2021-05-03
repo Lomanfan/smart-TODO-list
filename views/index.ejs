@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0' />
-  <!-- Bootstrap CSS -->
-
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
-    integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-  <title>smartList</title>
-</head>
+  <head>
+    <!-- Meta Information -->
+    <!-- <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0' /> -->
+    <title>smartList</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+      integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <!-- App CSS -->
+    <link rel="stylesheet" href="/styles/layout.css" type="text/css"/>
+  </head>
 
 <body>
   <%- include("partials/_header") %>
@@ -20,15 +22,14 @@
       </form>
     </div>
 
-    <!--we dont need to display the following, but we could try to make it work if time allow-->
-    <!-- <div class="card-content-top">
-    <div>
-      <a>
-        <img src="/views/image/HarryPotterBook.png"/>
-      </a>
-    </div>
-  </div> -->
-    <!-- Bootstrap JS -->
+  <div class="grid">
+    <div><img src="/images/HarryPotterBooks.png" alt="HarryPotterBook"></div>
+    <div><img src="/images/HarryPotterBooks.png" alt="HarryPotterBook"></div>
+    <div><img src="/images/HarryPotterBooks.png" alt="HarryPotterBook"></div>
+    <div><img src="/images/HarryPotterBooks.png" alt="HarryPotterBook"></div>
+  </div>
+
+  <!-- Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
       integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
       crossorigin="anonymous"></script>

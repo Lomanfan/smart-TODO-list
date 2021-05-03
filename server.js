@@ -39,12 +39,14 @@ const usersRoutes = require("./routes/users");
 const todoRoutes = require("./routes/todo");
 //require the route from database.js
 const database = require('./routes/database');
+const apiRoutes = require('./routes/apiRoute');
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 // app.use("/api/users", usersRoutes(db));
 app.use("/users", usersRoutes(database));
-app.use("/api/todo", todoRoutes(db));
+// app.use("/api/todo", todoRoutes(db));
+app.use("/api", apiRoutes(database));
 // Note: mount other resources here, using the same pattern above
 
 // login
