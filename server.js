@@ -62,9 +62,16 @@ app.get('/login/:id', (req, res) => {
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
-  res.render("index");
+  const templateVars = {user_id: 1,user_name:'Anne Parks'}
+  res.render("index", templateVars);
 });
 
+//homepage
+// app.get("/urls", (req, res) => {
+//   const urlsByUser = urlsForUser(req.session.user_id, urlDatabase);
+//   const templateVars = { urls: urlsByUser, user_id: users[req.session.user_id]};
+//   res.render("urls_index", templateVars);
+// });
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);

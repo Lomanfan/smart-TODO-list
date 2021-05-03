@@ -9,6 +9,7 @@ const express = require('express');
 const router  = express.Router();
 
 module.exports = (db) => {
+  // 8080:users/user_id
   router.get("/:user_id", (req, res) => {
 
     // db.query(`SELECT *
@@ -33,7 +34,7 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
   });
-
+  //8080:users/user_id/:todolist_id
   router.delete("/:user_id/:todolist_id", (req, res) => {
     const id = req.params;
     console.log(id);
@@ -51,5 +52,18 @@ module.exports = (db) => {
     });
   });
 
+ // 8080:users/user_id/new
+  router.put('/:user_id/new', (req, res) => {
+    console.log(req);
+    // const userId = req.session.userId;
+    // database.queryCategory({...req.body, user_id: userId })
+    //   .then(todolist => {
+    //     res.send(todolist);
+    //   })
+    //   .catch(err => {
+    //     console.error(err);
+    //     res.send(err)
+    //   });
+  });
   return router;
 };
