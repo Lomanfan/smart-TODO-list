@@ -12,13 +12,33 @@ pool.connect();
 
 const getToDo = (user) => {
   const queryParams = [];
-  console.log(user)
   queryParams.push(`${user.user_id}`);
-  let queryString = `SELECT *
-  FROM users
-  join todolist on user_id = users.id
+  let queryString = `SELECT todolist.id as todolist_id, users.id as user_id, category_id, category.type, user_input, users.name
+  FROM todolist
+  join users on user_id = users.id
   join category on category_id = category.id
   where users.id = $${queryParams.length};`
-  return pool.query(queryString, queryParams).then((res) => res.rows);
+  return pool.query(queryString, queryParams).then((data) => {
+    // console.dir((data.rows))
+  return  data.rows;
+});
 }
 exports.getTodo = getToDo;
+
+const deleteToDoById = (id) => {
+  const queryParams = [];
+  console.log(id);
+  queryParams.push(`${id}`);
+//   DELETE FROM links
+// WHERE id = 10;
+  let queryString = `DELETE
+  FROM todolist
+  where id = $${queryParams.length}
+  RETURNING *;`
+  return pool.query(queryString, queryParams)
+  .then((res) => {
+    return getToDo(res.rows[0])
+
+  });
+}
+exports.deleteToDoById = deleteToDoById;
