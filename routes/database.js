@@ -43,6 +43,29 @@ const deleteToDoById = (id) => {
 }
 exports.deleteToDoById = deleteToDoById;
 
+const changeCateById = (id) => {
+  const queryParams = [];
+  queryParams.push(`${id}`);
+
+  let queryString = `SELECT type FROM category
+  WHERE id = $${queryParams.length};`
+
+  return pool.query(queryString, queryParams)
+  .then((type) => {
+    console.log("-----", type);
+    let queryString = `UPDATE category
+    SET type = ${type}
+    WHERE category.id = $${queryParams.length}
+    RETURNING *;`
+    return pool.query(queryString, queryParams)
+    .then((res) => {
+      return getToDo(res.rows[0])
+    });
+  })
+}
+exports.changeCateById = changeCateById;
+
+
 const getIdByName = (cateName) => {
   const queryParams = [];
   queryParams.push(`${cateName}`);
@@ -52,8 +75,19 @@ const getIdByName = (cateName) => {
   return pool.query(queryString, queryParams).then((data) => {
     // console.log('hi');
     // console.dir((data.rows))
-  return  data.rows;
+  return data.rows;
 });
 }
-
 exports.getIdByName = getIdByName;
+
+
+const getAllCategories = () => {
+  return pool.query(`
+  SELECT type From category
+  `)
+  .then(data => {console.log("**********", data.rows)})
+  .catch((err) => {
+    console.log("getAllCategories", err.message);
+  })
+}
+exports.getAllCategories = getAllCategories;

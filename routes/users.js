@@ -9,17 +9,17 @@ const express = require('express');
 const router  = express.Router();
 const getCategory = require('./getCategory');
 const queryCategory = require('./queryCategory');
+const getAllCategories = require('../routes/database');
 // const database = require('./database');
 
 module.exports = (db) => {
   // 8080:users/user_id
   router.get("/:user_id", (req, res) => {
-
-
+    console.log(getAllCategories());
     const user = req.params;
-    // console.log(user)
-     db.getTodo(user)
-      .then(data => {
+    console.log(user);
+    db.getTodo(user)
+    .then(data => {
         const userTodoLists = data;
         res.render("show",{userTodoLists});
       })
@@ -32,8 +32,25 @@ module.exports = (db) => {
   //8080:users/user_id/:todolist_id
   router.delete("/:user_id/:todolist_id", (req, res) => {
     const id = req.params;
-    // console.log(id);
+    console.log(id);
     db.deleteToDoById(id.todolist_id)
+
+    .then(data => {
+      const userTodoLists = data;
+      // console.log(userTodoLists)
+      res.render("show",{userTodoLists});
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: err.message });
+    });
+  });
+
+  router.put("/:user_id/:todolist_id", (req,res) => {
+    console.log(req.params);
+    const id = req.params.todolist_id;
+    db.changeCateById(id.todolist_id)
 
     .then(data => {
       const userTodoLists = data;
@@ -74,4 +91,5 @@ module.exports = (db) => {
       });
   });
   return router;
+
 };
