@@ -23,7 +23,15 @@
             </form>
             <form action="" method="POST" class="">
               <label for="<%=userTodoList.type %>"><%=userTodoList.type %></label>
+            </form>
+            <form method="POST" action="/users/<%= userTodoList.user_id %>/<%= userTodoList.todolist_id %>?_method=PUT">
               <input type= "submit" name="userTodoList.type" value="change category">
+              <select name="category" id="type">
+                <option></option>
+                <% for(let type of types) { %>
+                <option value="allCategories"><%=type.type%></option>
+                  <% } %>
+              </select>
             </form>
             <% } %>
           </li>
@@ -33,4 +41,4 @@
       <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
       <script type="text/javascript" src="/scripts/app.js"></script>
     </body>
-    </html>
+</html>

@@ -1,5 +1,6 @@
 // const todolist = require('./db/seeds/03_todolist.sql');
 // const users = require('./db/seeds/01_users.sql');
+const { __esModule } = require('node-fetch');
 const { Pool } = require('pg');
 const pool = new Pool({
   user: 'labber',
@@ -82,10 +83,8 @@ exports.getIdByName = getIdByName;
 
 
 const getAllCategories = () => {
-  return pool.query(`
-  SELECT type From category
-  `)
-  .then(data => {console.log("**********", data.rows)})
+  return pool.query(`SELECT type FROM category;`)
+  .then((data) => data.rows)
   .catch((err) => {
     console.log("getAllCategories", err.message);
   })
