@@ -46,7 +46,7 @@ const apiRoutes = require('./routes/apiRoute');
 // app.use("/api/users", usersRoutes(db));
 app.use("/users", usersRoutes(database));
 // app.use("/api/todo", todoRoutes(db));
-app.use("/api", apiRoutes(database));
+// app.use("/api", apiRoutes(database));
 // Note: mount other resources here, using the same pattern above
 
 // login
