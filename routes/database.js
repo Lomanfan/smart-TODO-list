@@ -44,9 +44,10 @@ const deleteToDoById = (id) => {
 }
 exports.deleteToDoById = deleteToDoById;
 
-const changeCateById = (id) => {
+
+const changeCateById = (userId, todoId, cateId) => {
   const queryParams = [];
-  queryParams.push(`${id}`);
+  queryParams.push(`${userId}`, `${todoId}`, `${cateId}`);
 
   let queryString = `SELECT type FROM category
   WHERE id = $${queryParams.length};`

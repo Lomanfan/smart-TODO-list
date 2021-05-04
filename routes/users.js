@@ -21,7 +21,7 @@ module.exports = (db) => {
     db.getAllCategories()
     .then((result) => {
       const types = result;
-      console.log(types);
+      // console.log(types);
 
       db.getTodo(user)
       .then(data => {
@@ -39,6 +39,7 @@ module.exports = (db) => {
 
   //8080:users/user_id/:todolist_id
   router.delete("/:user_id/:todolist_id", (req, res) => {
+    console.log(req.params);
     const id = req.params;
     console.log(id);
 
@@ -62,16 +63,18 @@ module.exports = (db) => {
     });
   });
 
-  router.put("/:user_id/:todolist_id", (req,res) => {
-    console.log(req.params);
-    const id = req.params.todolist_id;
+  router.put("/:user_id/:todolist_id/:category_id", (req,res) => {
+    // console.log(req.params);
+    const userId = req.params.user_id;
+    const todoId = req.params.todolist_id;
+    const cateId = req.params.category_id;
 
-    db.getAllCategories()
-    .then((result) => {
-      const types = result;
-      console.log(types);
+    // db.getAllCategories()
+    // .then((result) => {
+    //   const types = result;
+    //   console.log(types);
 
-    db.changeCateById(id.todolist_id)
+    db.changeCateById(userId, todoId, cateId)
 
     .then(data => {
       const userTodoLists = data;
@@ -83,7 +86,7 @@ module.exports = (db) => {
         .status(500)
         .json({ error: err.message });
 
-     });
+    //  });
     });
   });
 
