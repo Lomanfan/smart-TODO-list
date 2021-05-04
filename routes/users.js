@@ -9,7 +9,7 @@ const express = require('express');
 const router  = express.Router();
 const getCategory = require('./getCategory');
 const queryCategory = require('./queryCategory');
-const database = require('./database');
+// const database = require('./database');
 
 module.exports = (db) => {
   // 8080:users/user_id
