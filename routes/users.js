@@ -7,7 +7,6 @@
 
 const express = require('express');
 const router  = express.Router();
-// const db = require()
 
 module.exports = (db) => {
   router.get("/:user_id", (req, res) => {
@@ -34,5 +33,23 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
   });
+
+  router.delete("/:user_id/:todolist_id", (req, res) => {
+    const id = req.params;
+    console.log(id);
+    db.deleteToDoById(id.todolist_id)
+
+    .then(data => {
+      const userTodoLists = data;
+      // console.log(userTodoLists)
+      res.render("show",{userTodoLists});
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: err.message });
+    });
+  });
+
   return router;
 };

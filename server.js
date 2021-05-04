@@ -40,6 +40,9 @@ const todoRoutes = require("./routes/todo");
 //require the route from database.js
 const database = require('./routes/database');
 const apiRoutes = require('./routes/apiRoute');
+//require method-override
+const methodOverride = require('method-override');
+app.use(methodOverride('_method'));
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
