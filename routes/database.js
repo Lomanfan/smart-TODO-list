@@ -17,7 +17,8 @@ const getToDo = (user) => {
   FROM todolist
   join users on user_id = users.id
   join category on category_id = category.id
-  where users.id = $${queryParams.length};`
+  where users.id = $${queryParams.length}
+  order by todolist.id DESC;`
   return pool.query(queryString, queryParams).then((data) => {
     // console.dir((data.rows))
   return  data.rows;
@@ -27,7 +28,7 @@ exports.getTodo = getToDo;
 
 const deleteToDoById = (id) => {
   const queryParams = [];
-  console.log(id);
+  // console.log(id);
   queryParams.push(`${id}`);
 //   DELETE FROM links
 // WHERE id = 10;
@@ -37,10 +38,11 @@ const deleteToDoById = (id) => {
   RETURNING *;`
   return pool.query(queryString, queryParams)
   .then((res) => {
+    console.log('results after delete',res.rows[0])
     return getToDo(res.rows[0])
-
   });
 }
+
 exports.deleteToDoById = deleteToDoById;
 
 const getIdByName = (cateName) => {

@@ -13,32 +13,35 @@ const queryCategory = require('./queryCategory');
 
 module.exports = (db) => {
   // 8080:users/user_id
-  router.get("/:user_id", (req, res) => {
+  // router.get("/:user_id", (req, res) => {
 
 
-    const user = req.params;
-    // console.log(user)
-     db.getTodo(user)
-      .then(data => {
-        const userTodoLists = data;
-        res.render("show",{userTodoLists});
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
-  });
+  //   const user = req.params;
+  //   // console.log(user)
+  //    db.getTodo(user)
+  //     .then(data => {
+  //       const userTodoLists = data;
+  //       res.render("show",{userTodoLists});
+  //     })
+  //     .catch(err => {
+  //       res
+  //         .status(500)
+  //         .json({ error: err.message });
+  //     });
+  // });
+
+
   //8080:users/user_id/:todolist_id
-  router.delete("/:user_id/:todolist_id", (req, res) => {
+  router.delete("/:user_id/todolist/:todolist_id", (req, res) => {
     const id = req.params;
     // console.log(id);
     db.deleteToDoById(id.todolist_id)
 
     .then(data => {
       const userTodoLists = data;
-      // console.log(userTodoLists)
-      res.render("show",{userTodoLists});
+      // console.log("data");
+      // console.dir(userTodoLists);
+      res.redirect("/");
     })
     .catch(err => {
       res
@@ -64,9 +67,9 @@ module.exports = (db) => {
         // console.log("user res: ",res);
        return db.getTodo(res);
       })
-      .then(data => {
-        const userTodoLists = data;
-        res.render("show",{userTodoLists});
+      .then(() => {
+        // const userTodoLists = data;
+        res.redirect("/");
       })
       .catch(err => {
         console.error(err);
