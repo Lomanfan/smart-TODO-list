@@ -7,6 +7,9 @@
 
 const express = require('express');
 const router  = express.Router();
+const getCategory = require('./getCategory');
+const queryCategory = require('./queryCategory');
+const database = require('./database');
 
 module.exports = (db) => {
   // 8080:users/user_id
@@ -23,7 +26,7 @@ module.exports = (db) => {
      db.getTodo(user)
       .then(data => {
         const userTodoLists = data;
-        console.log(userTodoLists)
+        // console.log(userTodoLists)
         // res.json({ userTodoLists });
         //redirect to users todo list page
         res.render("show",{userTodoLists});
@@ -37,7 +40,7 @@ module.exports = (db) => {
   //8080:users/user_id/:todolist_id
   router.delete("/:user_id/:todolist_id", (req, res) => {
     const id = req.params;
-    console.log(id);
+    // console.log(id);
     db.deleteToDoById(id.todolist_id)
 
     .then(data => {
@@ -53,17 +56,22 @@ module.exports = (db) => {
   });
 
  // 8080:users/user_id/new
-  router.put('/:user_id/new', (req, res) => {
-    console.log(req);
-    // const userId = req.session.userId;
-    // database.queryCategory({...req.body, user_id: userId })
-    //   .then(todolist => {
-    //     res.send(todolist);
-    //   })
-    //   .catch(err => {
-    //     console.error(err);
-    //     res.send(err)
-    //   });
+  router.post('/:user_id/new', (req, res) => {
+    console.log(req.params);
+    const user_id = parseInt(req.params.user_id);
+    const input = req.body.todolist;
+    getCategory(input)
+      .then(res => {
+      return database.getIdByName(res)
+      })
+      .then(res =>{
+      const cateId = res[0].id;
+      queryCategory.queryCategory(user_id, cateId, input)
+      })
+      .catch(err => {
+        console.error(err);
+        res.send(err)
+      });
   });
   return router;
 };

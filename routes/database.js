@@ -42,3 +42,18 @@ const deleteToDoById = (id) => {
   });
 }
 exports.deleteToDoById = deleteToDoById;
+
+const getIdByName = (cateName) => {
+  const queryParams = [];
+  queryParams.push(`${cateName}`);
+  let queryString = `SELECT category.id
+  FROM category
+  where category.type = $${queryParams.length};`
+  return pool.query(queryString, queryParams).then((data) => {
+    // console.log('hi');
+    // console.dir((data.rows))
+  return  data.rows;
+});
+}
+
+exports.getIdByName = getIdByName;

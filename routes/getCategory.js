@@ -1,8 +1,9 @@
-module.exports = (db) => {
+module.exports = (text) => {
   require('dotenv').config()
   const fetch = require('node-fetch');
 
-  const data = { texts: ['pizza'] };
+  const data = { texts: [text] };
+  // const data = text;
   const key = process.env.API_READ;
 
  return fetch('https://api.uclassify.com/v1/jessiep/todolist/classify', {
