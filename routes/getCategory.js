@@ -1,3 +1,5 @@
+// TODO: add AJV when have time.
+
 module.exports = (text) => {
   require('dotenv').config();
   const fetch = require('node-fetch');
@@ -15,7 +17,7 @@ module.exports = (text) => {
   })
   .then(response => response.json())
   .then(data => {
-
+    console.log("data from logging", data);
     const results = data[0].classification;
     let cateName;
     for(let result of results) {
