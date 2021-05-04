@@ -15,20 +15,12 @@ module.exports = (db) => {
   // 8080:users/user_id
   router.get("/:user_id", (req, res) => {
 
-    // db.query(`SELECT *
-    // FROM users
-    // join todolist on user_id = users.id
-    // join category on category_id = category.id
-    // where users.id = ${req.params.user_id};`)
-    // console.log(req.params)
+
     const user = req.params;
-    console.log(user)
+    // console.log(user)
      db.getTodo(user)
       .then(data => {
         const userTodoLists = data;
-        // console.log(userTodoLists)
-        // res.json({ userTodoLists });
-        //redirect to users todo list page
         res.render("show",{userTodoLists});
       })
       .catch(err => {
@@ -62,11 +54,19 @@ module.exports = (db) => {
     const input = req.body.todolist;
     getCategory(input)
       .then(res => {
-      return database.getIdByName(res)
+      return db.getIdByName(res)
       })
       .then(res =>{
       const cateId = res[0].id;
-      queryCategory.queryCategory(user_id, cateId, input)
+      return queryCategory.queryCategory(user_id, cateId, input);
+      })
+      .then(res => {
+        // console.log("user res: ",res);
+       return db.getTodo(res);
+      })
+      .then(data => {
+        const userTodoLists = data;
+        res.render("show",{userTodoLists});
       })
       .catch(err => {
         console.error(err);

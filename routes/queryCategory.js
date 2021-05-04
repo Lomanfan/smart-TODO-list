@@ -26,6 +26,7 @@ const queryCategory = function(user_id, category_id, user_input) {
   // INSERT INTO category (type) VALUES ('to shop');
 
   .then(res => {
+    console.log("res:", res.rows[0]);
     return res.rows[0];
   })
   .catch(err => {
