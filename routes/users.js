@@ -10,25 +10,8 @@ const router  = express.Router();
 const getCategory = require('./getCategory');
 const queryCategory = require('./queryCategory');
 // const database = require('./database');
-
+//TODO:route to sort the todolists by category name
 module.exports = (db) => {
-  // 8080:users/user_id
-  // router.get("/:user_id", (req, res) => {
-
-
-  //   const user = req.params;
-  //   // console.log(user)
-  //    db.getTodo(user)
-  //     .then(data => {
-  //       const userTodoLists = data;
-  //       res.render("show",{userTodoLists});
-  //     })
-  //     .catch(err => {
-  //       res
-  //         .status(500)
-  //         .json({ error: err.message });
-  //     });
-  // });
 
 
   //8080:users/user_id/:todolist_id
