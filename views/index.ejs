@@ -12,78 +12,84 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
       integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <!-- App CSS -->
-    <link rel="stylesheet" href="/styles/layout.css" type="text/css"/>
+    <link rel="stylesheet" href="/styles/layout.scss" type="text/scss"/>
   </head>
-
-<body class="all-background">
-  <!-- //TODO: move the inline style to css file
-  //TODO: make the test and the category in the same line for each todolist
-  //TODO: change the style of buttons in todolist
-  //TODO: show the user name on the page instead of login button in the header
-  //TODO: style the page as pretty as we can -->
-  <nav class="navbar navbar-light justify-content-between" style="margin-top: 38px;">
-    <a class="navbar-brand">SmartList</a>
-    <div>
-      <button type="button" class="btn btn-binary" style="font-size: x-large;">ALL</button>
-      <button type="button" class="btn btn-binary" style="font-size: x-large;">TO EAT</button>
-      <button type="button" class="btn btn-binary" style="font-size: x-large;">TO READ</button>
-      <button type="button" class="btn btn-binary" style="font-size: x-large;">TO WATCH</button>
-      <button type="button" class="btn btn-binary" style="font-size: x-large;">TO SHOP</button>
-    </div>
-
-    <div>
-      <!-- <button type="button" class="btn btn-dark">USER 1</button> -->
-      <p2 style="font-style: italic;">Welcome, User 1</p2>
-    </div>
-  </nav>
-    <div class="text-center" style="display: flex;">
-     <form method="POST" action="users/<%= userTodoLists[0].user_id %>/new">
-        <input name="todolist" class="justify-content-center" type="text" placeholder="Something you'd like to add"
-          style="width: 450px;margin: 1em;padding-top: 0.5;height: 60.99306px;">
-
-        <button type="submit" class="btn btn-warning btn-lg">Add</button>
-      </form>
-    </div>
-
-    <div>
-      <h1>Things to do</h1>
-      <section class = "lists-body">
-        <ol>
-          <li>
-            <% for(let userTodoList of userTodoLists) { %>
-              <form action="/users/<%= userTodoList.user_id %>/todolist/<%= userTodoList.todolist_id %>?_method=DELETE" method="POST" class="">
-                <input type ="checkbox" id= "<%=userTodoList.id %>" name ="<%=userTodoList.id %>" class = "checkbox">
-                <label for="<%=userTodoList.id %>"> <%=userTodoList.user_id %></label>
-                <label for="<%=userTodoList.id %>"> <%=userTodoList.user_input %></label>
-                <button >delete</button>
-              </form>
-              <form action="" method="POST" class="">
-                <label for="<%=userTodoList.type %>"><%=userTodoList.type %></label>
-                <input type= "submit" name="userTodoList.type" value="change category">
-              </form>
-              <% } %>
-            </li>
-          </ol>
-        </section>
+<body>
+<div class="container m-5 p-2 rounded mx-auto bg-light shadow">
+  <!-- App title section -->
+  <div class="row m-1 p-4">
+      <div class="col">
+          <div class="p-1 h1 text-primary text-center mx-auto display-inline-block">
+              <!-- <i class="fa fa-check bg-primary text-white rounded p-2"></i> -->
+              <u>SmartList</u>
+          </div>
       </div>
-  <div class="grid">
-    <div><img src="/images/HarryPotterBooks.png" alt="HarryPotterBook"></div>
-    <div><img src="/images/HarryPotterBooks.png" alt="HarryPotterBook"></div>
-    <div><img src="/images/HarryPotterBooks.png" alt="HarryPotterBook"></div>
-    <div><img src="/images/HarryPotterBooks.png" alt="HarryPotterBook"></div>
   </div>
+  <!-- Create todo section -->
+  <div class="row m-1 p-3">
+      <div class="col col-11 mx-auto">
+          <div class="row bg-white rounded shadow-sm p-2 add-todo-wrapper align-items-center justify-content-center">
+              <div class="col">
+                <form method="POST" action="users/<%= userTodoLists[0].user_id %>/new">
+                  <input name="todolist" class="form-control form-control-lg border-0 add-todo-input bg-transparent rounded" type="text" placeholder="Add new ..">
+              </div>
+              <div class="col-auto px-0 mx-0 mr-2">
+                  <button type="submit" class="btn btn-primary">Add</button>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="p-2 mx-4 border-black-25 border-bottom"></div>
+  <!-- View options section -->
+  <div class="row m-1 p-3 px-5 justify-content-end">
+      <div class="col-auto d-flex align-items-center">
+          <label class="text-secondary my-2 pr-2 view-opt-label">Filter</label>
+          <select class="custom-select custom-select-sm btn my-2">
+              <option value="all" selected>ALL</option>
+              <option value="eat">TO EAT</option>
+              <option value="read">TO READ</option>
+              <option value="watch">TO WATCH</option>
+              <option value="shop">TO SHOP</option>
+          </select>
+      </div>
+      </div>
+  </div>
+  <!-- Todo list section -->
+  <div class="row mx-1 px-5 pb-3 w-80">
+      <div class="col mx-auto">
+        <div>
+          <section class = "lists-body">
+            <ol>
+              <li>
+                <% for(let userTodoList of userTodoLists) { %>
+                  <form action="users/<%= userTodoList.user_id %>/todolist/<%= userTodoList.todolist_id %>?_method=DELETE" method="POST">
+                    <input type ="checkbox" id= "<%=userTodoList.id %>" name ="<%=userTodoList.id %>" class = "checkbox">
+                    <label for="<%=userTodoList.id %>"> <%=userTodoList.user_id %></label>
+                    <label for="<%=userTodoList.id %>"> <%=userTodoList.user_input %></label>
+                    <input type="submit" value="delete">
+                  </form>
+                  <form action="" method="POST" class="">
+                    <label for="<%=userTodoList.type %>"><%=userTodoList.type %></label>
+                    <input type= "submit" name="userTodoList.type" value="change category">
+                  </form>
+                  <% } %>
+                </li>
+              </ol>
+            </section>
+          </div>
+        </div>
+      </div>
 
-    <script type="./routes/users.js"></script>
-  <!-- Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-      crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-      crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-      crossorigin="anonymous"></script>
+  <script type="./routes/users.js"></script>
+<!-- Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+crossorigin="anonymous"></script>
 </body>
-
-</html
+</html>
