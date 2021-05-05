@@ -64,7 +64,6 @@ app.get('/login/:id', (req, res) => {
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
-
   // const templateVars = {user_id: 1,user_name:'Anne Parks'}
   // res.render("index", templateVars);
   const user = {user_id: 1,user_name:'Anne Parks'};
@@ -72,9 +71,15 @@ app.get("/", (req, res) => {
      database.getTodo(user)
       .then(data => {
         const userTodoLists = data;
-        console.dir(userTodoLists);
-        res.render("index",{userTodoLists});
+        // console.dir(userTodoLists);
+      database.getAllCategories()
+      .then((result) => {
+        const types = result;
+        console.log(types);
+        // const userTodoLists = todoLists;
+        res.render("index",{userTodoLists,types});
       })
+    })
       .catch(err => {
         res
           .status(500)

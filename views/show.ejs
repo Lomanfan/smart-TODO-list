@@ -2,36 +2,57 @@
 <html lang="en">
   <head>
     <title>todo list Page</title>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
-
+    <!-- <script>
+    function actionOnSubmit(user_id, category_id)
+    {
+    let e = document.getElementById("categoryDropdown");
+    let selectedCate = e.options[e.selectedIndex].value;
+    let formaction = `/users/${user_id}/${category_id}/${selectedCate}?_method=PUT`;
+    console.log("**************", formaction);
+    e.action = formaction;
+    }
+    </script> -->
   </head>
 
   <body>
     <h1>Things to do</h1>
+    <h1>Things to do</h1>
     <section class = "lists-body">
       <ol>
         <li>
-          <% for(let userTodoList of userTodoLists) { %>
-            <form action="/users/<%= userTodoList.user_id %>/<%= userTodoList.todolist_id %>?_method=DELETE" method="POST" class="">
-              <input type ="checkbox" id= "<%=userTodoList.id %>" name ="<%=userTodoList.id %>" class = "checkbox">
-              <label for="<%=userTodoList.id %>"> <%=userTodoList.user_id %></label>
-              <label for="<%=userTodoList.id %>"> <%=userTodoList.user_input %></label>
+          <% for(let todoItem of userTodoLists) { %>
+            <form action="/users/<%= todoItem.user_id %>/<%= todoItem.todolist_id %>?_method=DELETE" method="POST" class="">
+              <input type ="checkbox" id= "<%=todoItem.id %>" name ="<%=todoItem.id %>" class = "checkbox">
+              <label for="<%=todoItem.id %>"> <%=todoItem.user_id %></label>
+              <label for="<%=todoItem.id %>"> <%=todoItem.user_input %></label>
               <button >delete</button>
             </form>
             <form action="" method="POST" class="">
-              <label for="<%=userTodoList.type %>"><%=userTodoList.type %></label>
-              <input type= "submit" name="userTodoList.type" value="change category">
-                </select>
+              <label for="<%=todoItem.type %>"><%=todoItem.type %></label>
             </form>
-            <% } %>
+
+
+            <form method="POST" action="/users/<%= todoItem.user_id %>/<%= todoItem.todolist_id %>?_method=PUT" id ="changeCate">
+
+                <select name="categoryDropdown" class="categoryDropdown" method="PUT">
+                  <% for(let type of types) { %>
+                <!-- <select name="categoryDropdown" id="categoryDropdown" onchange="actionOnSubmit(todoItem.user_id, todoItem.category_id)" method="PUT"> -->
+                    <option type="hidden" value="<%=type.id%>" id="<%=type.id%>" ><%=type.type%></option>
+                    <% } %>
+                  </select>
+                  <input type="submit" value="change category">
+            </form>
+          <% } %>
+
           </li>
         </ol>
       </section>
-      <script type="./routes/users.js"></script>
-      <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-      <script type="text/javascript" src="/scripts/app.js"></script>
     </body>
-    </html>
+</html>
