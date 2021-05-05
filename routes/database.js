@@ -1,5 +1,6 @@
 // const todolist = require('./db/seeds/03_todolist.sql');
 // const users = require('./db/seeds/01_users.sql');
+const { __esModule } = require('node-fetch');
 const { Pool } = require('pg');
 const pool = new Pool({
   user: 'labber',
@@ -45,6 +46,24 @@ const deleteToDoById = (id) => {
 
 exports.deleteToDoById = deleteToDoById;
 
+
+const changeCateById = (userId, todoId, cateId) => {
+  const queryParams = [];
+  queryParams.push(`${userId}`, `${todoId}`, `${cateId}`);
+
+  let queryString = `UPDATE todolist SET category_id = $3
+  WHERE user_id = $1 AND todolist.id = $2 RETURNING *;`
+
+  return pool.query(queryString, queryParams)
+    .then((res) => {
+      console.log("aaaaaaaaa",res.rows[0])
+      return getToDo(res.rows[0])
+    });
+
+}
+exports.changeCateById = changeCateById;
+
+
 const getIdByName = (cateName) => {
   const queryParams = [];
   queryParams.push(`${cateName}`);
@@ -54,8 +73,17 @@ const getIdByName = (cateName) => {
   return pool.query(queryString, queryParams).then((data) => {
     // console.log('hi');
     // console.dir((data.rows))
-  return  data.rows;
+  return data.rows;
 });
 }
-
 exports.getIdByName = getIdByName;
+
+
+const getAllCategories = () => {
+  return pool.query(`SELECT * FROM category;`)
+  .then((data) => data.rows)
+  .catch((err) => {
+    console.log("getAllCategories", err.message);
+  })
+}
+exports.getAllCategories = getAllCategories;
