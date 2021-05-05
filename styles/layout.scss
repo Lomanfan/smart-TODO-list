@@ -1,42 +1,36 @@
-// See: https://sass-lang.com/
-
 body {
-  background-color: white;
-  margin-left: 100px;
-  margin-right: 100px;
+  font-family: "Open Sans", sans-serif;
+  line-height: 1.6;
 }
 
-body h1 {
-  color: #244751;
+.add-todo-input,
+.edit-todo-input {
+  outline: none;
 }
 
-header {
-  display: flex;
-  justify-content: flex-end;
+.add-todo-input:focus,
+.edit-todo-input:focus {
+  border: none !important;
+  box-shadow: none !important;
 }
 
-.navbar-brand {
-  font-family: 'Ultra', serif;
-  color: black;
-  font-size: 38px;
+.view-opt-label,
+.date-label {
+  font-size: 0.8rem;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  grid-gap: 10rem;
-  border-radius: 50px;
+.edit-todo-input {
+  font-size: 1.7rem !important;
 }
 
-.grid img {
-  margin-top: 120px;
-  border-radius: 8px;
-  border: 1px solid #ddd;
-  padding: 5px;
-  width: 200px;
+.todo-actions {
+  visibility: hidden !important;
 }
 
-img:hover {
-  box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+.todo-item:hover .todo-actions {
+  visibility: visible !important;
 }
 
+.todo-item.editing .todo-actions .edit-icon {
+  display: none !important;
+}
