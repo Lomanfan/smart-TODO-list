@@ -21,7 +21,6 @@ module.exports = (db) => {
     db.getAllCategories()
     .then((result) => {
       const types = result;
-      // console.log(types);
 
       db.getTodo(user)
       .then(data => {
@@ -68,11 +67,12 @@ module.exports = (db) => {
     const userId = req.params.user_id;
     const todoId = req.params.todolist_id;
     const cateId = req.params.category_id;
+    console.log("************", req.params);
 
-    // db.getAllCategories()
-    // .then((result) => {
-    //   const types = result;
-    //   console.log(types);
+    db.getAllCategories()
+    .then((result) => {
+      const types = result;
+      console.log(types);
 
     db.changeCateById(userId, todoId, cateId)
 
@@ -86,7 +86,7 @@ module.exports = (db) => {
         .status(500)
         .json({ error: err.message });
 
-    //  });
+     });
     });
   });
 

@@ -49,21 +49,15 @@ const changeCateById = (userId, todoId, cateId) => {
   const queryParams = [];
   queryParams.push(`${userId}`, `${todoId}`, `${cateId}`);
 
-  let queryString = `SELECT type FROM category
-  WHERE id = $${queryParams.length};`
+  let queryString = `UPDATE todolist SET category_id = $3
+  WHERE user_id = $1 AND todolist.id = $2 RETURNING *;`
 
   return pool.query(queryString, queryParams)
-  .then((type) => {
-    console.log("-----", type);
-    let queryString = `UPDATE category
-    SET type = ${type}
-    WHERE category.id = $${queryParams.length}
-    RETURNING *;`
-    return pool.query(queryString, queryParams)
     .then((res) => {
+      console.log("aaaaaaaaa",res.rows[0])
       return getToDo(res.rows[0])
     });
-  })
+
 }
 exports.changeCateById = changeCateById;
 
@@ -84,7 +78,7 @@ exports.getIdByName = getIdByName;
 
 
 const getAllCategories = () => {
-  return pool.query(`SELECT type FROM category;`)
+  return pool.query(`SELECT * FROM category;`)
   .then((data) => data.rows)
   .catch((err) => {
     console.log("getAllCategories", err.message);
