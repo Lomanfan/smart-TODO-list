@@ -62,31 +62,21 @@ module.exports = (db) => {
     });
   });
 
-  router.put("/:user_id/:todolist_id/:category_id", (req,res) => {
-    // console.log(req.params);
+  router.put("/:user_id/:todolist_id", (req,res) => {
     const userId = req.params.user_id;
     const todoId = req.params.todolist_id;
-    const cateId = req.params.category_id;
-    console.log("************", req.params);
+    const cateId = req.body.categoryDropdown;
 
-    db.getAllCategories()
-    .then((result) => {
-      const types = result;
-      console.log(types);
 
     db.changeCateById(userId, todoId, cateId)
 
     .then(data => {
-      const userTodoLists = data;
-      // console.log(userTodoLists)
-      res.render("show",{userTodoLists, types});
+      res.redirect("back");
     })
     .catch(err => {
       res
         .status(500)
         .json({ error: err.message });
-
-     });
     });
   });
 

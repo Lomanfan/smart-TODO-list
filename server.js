@@ -64,8 +64,23 @@ app.get('/login/:id', (req, res) => {
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
-  const templateVars = {user_id: 1,user_name:'Anne Parks'}
-  res.render("index", templateVars);
+  // const templateVars = {user_id: 1,user_name:'Anne Parks'}
+  // res.render("index", templateVars);
+  // const templateVars = {user_id: 1,user_name:'Anne Parks'}
+  // res.render("index", templateVars);
+  const user = {user_id: 1,user_name:'Anne Parks'};
+    // console.log(user)
+     database.getTodo(user)
+      .then(data => {
+        const userTodoLists = data;
+        console.dir(userTodoLists);
+        res.render("index",{userTodoLists});
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
 });
 
 //homepage
