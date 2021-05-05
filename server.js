@@ -71,9 +71,15 @@ app.get("/", (req, res) => {
      database.getTodo(user)
       .then(data => {
         const userTodoLists = data;
-        console.dir(userTodoLists);
-        res.render("index",{userTodoLists});
+        // console.dir(userTodoLists);
+      database.getAllCategories()
+      .then((result) => {
+        const types = result;
+        console.log(types);
+        // const userTodoLists = todoLists;
+        res.render("index",{userTodoLists,types});
       })
+    })
       .catch(err => {
         res
           .status(500)

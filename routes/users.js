@@ -15,50 +15,21 @@ const { getAllCategories } = require('../routes/database');
 module.exports = (db) => {
   // 8080:users/user_id
 
-  router.get("/:user_id", (req, res) => {
-    const user = req.params;
-    // console.log(user);
-    db.getAllCategories()
-    .then((result) => {
-      const types = result;
 
-      db.getTodo(user)
-      .then(data => {
-        // console.log(data);
-          const userTodoLists = data;
-          res.render("show",{userTodoLists,types});
-        })
-        .catch(err => {
-          res
-            .status(500)
-            .json({ error: err.message });
-        });
-    });
-  });
-
-  //8080:users/user_id/:todolist_id
-  router.delete("/:user_id/:todolist_id", (req, res) => {
-    console.log(req.params);
+  //delete a exist todolist
+  router.delete("/:user_id/todolist/:todolist_id", (req, res) => {
     const id = req.params;
-    console.log(id);
-
-    db.getAllCategories()
-    .then((result) => {
-      const types = result;
-      console.log(types);
-
+    // console.log(id);
     db.deleteToDoById(id.todolist_id)
+
     .then(data => {
       const userTodoLists = data;
-      // console.log(userTodoLists)
-      res.render("show",{userTodoLists, types});
+      res.redirect("back");
     })
     .catch(err => {
       res
         .status(500)
         .json({ error: err.message });
-
-      });
     });
   });
 
@@ -66,10 +37,7 @@ module.exports = (db) => {
     const userId = req.params.user_id;
     const todoId = req.params.todolist_id;
     const cateId = req.body.categoryDropdown;
-
-
     db.changeCateById(userId, todoId, cateId)
-
     .then(data => {
       res.redirect("back");
     })
@@ -79,6 +47,9 @@ module.exports = (db) => {
         .json({ error: err.message });
     });
   });
+
+
+
 
  // 8080:users/user_id/new
   router.post('/:user_id/new', (req, res) => {
