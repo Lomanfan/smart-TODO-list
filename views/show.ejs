@@ -35,12 +35,12 @@
             </form>
 
 
-            <form method="POST" action="/users/<%= todoItem.user_id %>/<%= todoItem.todolist_id %>/<%= todoItem.category_id %>?_method=PUT">
-              <form name="changeCategory">
+            <form method="POST" action="/users/<%= todoItem.user_id %>/<%= todoItem.todolist_id %>/<%= todoItem.category_id %>?_method=PUT" id ="changeCate">
+
                 <select name="categoryDropdown" id="categoryDropdown" method="PUT">
-                <!-- <select name="categoryDropdown" id="categoryDropdown" onchange="actionOnSubmit(todoItem.user_id, todoItem.category_id)" method="PUT"> -->
                   <% for(let type of types) { %>
-                    <option type="hidden" value="<%=type.id%>" id="<%=type.id%>"><%=type.type%></option>
+                <!-- <select name="categoryDropdown" id="categoryDropdown" onchange="actionOnSubmit(todoItem.user_id, todoItem.category_id)" method="PUT"> -->
+                    <option type="hidden" value="<%=type.id%>" id="<%=type.id%>" ><%=type.type%></option>
                     <% } %>
                   </select>
                   <input type="submit" value="change category">
