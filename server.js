@@ -66,8 +66,6 @@ app.get('/login/:id', (req, res) => {
 app.get("/", (req, res) => {
   // const templateVars = {user_id: 1,user_name:'Anne Parks'}
   // res.render("index", templateVars);
-  // const templateVars = {user_id: 1,user_name:'Anne Parks'}
-  // res.render("index", templateVars);
   const user = {user_id: 1,user_name:'Anne Parks'};
     // console.log(user)
      database.getTodo(user)

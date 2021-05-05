@@ -11,7 +11,7 @@ const getCategory = require('./getCategory');
 const queryCategory = require('./queryCategory');
 const { getAllCategories } = require('../routes/database');
 // const database = require('./database');
-
+//TODO:route to sort the todolists by category name
 module.exports = (db) => {
   // 8080:users/user_id
 
@@ -103,9 +103,9 @@ module.exports = (db) => {
         // console.log("user res: ",res);
        return db.getTodo(res);
       })
-      .then(data => {
-        const userTodoLists = data;
-        res.render("show",{userTodoLists, types});
+      .then(() => {
+        // const userTodoLists = data;
+        res.redirect("/");
       })
       .catch(err => {
         console.error(err);
