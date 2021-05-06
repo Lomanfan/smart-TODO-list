@@ -37,5 +37,3 @@ exports.queryCategory = queryCategory;
 console.log(queryCategory(1, 1, 'steak'));
 
 
-
-
