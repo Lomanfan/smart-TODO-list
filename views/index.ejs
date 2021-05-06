@@ -27,6 +27,11 @@
 </head>
 
 <body class="all-background">
+  <!-- //TODO: move the inline style to css file
+    //TODO: make the test and the category in the same line for each todolist
+    //TODO: change the style of buttons in todolist
+    //TODO: show the user name on the page instead of login button in the header
+    //TODO: style the page as pretty as we can -->
   <div>
     <nav id="container" class="navbar navbar-light justify-content-between">
       <a class="navbar-brand">SmartList</a>
@@ -44,7 +49,7 @@
     <div class="header">
       <header>
         <div>
-          <form method="POST" action="users/<%= userTodoLists[0].user_id %>/new">
+          <form method="POST" action="users/<%= user.user_id %>/new">
             <input name="todolist" id="todolist" class="justify-content-center" type="text"
               placeholder="Something you'd like to add">
             <button type="submit" class="btn btn-warning btn-lg">Add</button>
@@ -75,7 +80,7 @@
                       id="changeCate">
                       <select class="btn btn-danger dropdown-toggle" name="categoryDropdown" class="categoryDropdown"
                         method="PUT">
-              
+
                         <% for(let type of types) { %>
                           <option type="hidden" value="<%=type.id%>" id="<%=type.id%>">
                             <%=type.type%>
