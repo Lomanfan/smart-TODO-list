@@ -11,4 +11,18 @@ $(() => {
     }
   });
 
+  $(".checkbox").each(function(){
+  $("input:checkbox").on('change',function(event){
+    let todoId = event.target.id;
+    console.log(todoId);
+    if($(".checkbox").prop("checked")) {
+      $(".checkbox").prop("checked", false);
+      $(".todoText").css("display","none")
+    } else{
+
+      $(".checkbox").prop("checked", true);
+      $(".todoText").css("display","block")
+    }
+  })
+  })
 });

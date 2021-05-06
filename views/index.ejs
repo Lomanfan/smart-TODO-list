@@ -40,7 +40,7 @@
       </div>
     </nav>
       <div class="text-center" style="display: flex;">
-      <form method="POST" action="users/<%= userTodoLists[0].user_id %>/new">
+      <form method="POST" action="users/<%= user.user_id %>/new">
           <input name="todolist" class="justify-content-center" type="text" placeholder="Something you'd like to add"
             style="width: 450px;margin: 1em;padding-top: 0.5;height: 60.99306px;">
 
@@ -51,29 +51,31 @@
       <div>
           <h1>Things to do</h1>
       <section class = "lists-body">
+          <% if (userTodoLists.length > 0) { %>
+            <% for(let todoItem of userTodoLists) { %>
 
-          <% for(let todoItem of userTodoLists) { %>
-          <div  class="everyTodo <%= todoItem.type%>">
-            <input type ="checkbox" id= "<%=todoItem.id %>" name ="<%=todoItem.id %>" class = "checkbox">
+              <div  class="everyTodo <%= todoItem.type%>">
+                <input type ="checkbox" id= "<%=todoItem.id %>" name ="<%=todoItem.id %>" class = "checkbox" id="<%=todoItem.todolist_id%>">
 
-            <p> <%=todoItem.user_input %></p>
-            <p class="todoText"><%=todoItem.type %></p>
+                <p> <%=todoItem.user_input %></p>
+                <p class="todoText"><%=todoItem.type %></p>
 
-            <form method="POST" action="/users/<%= todoItem.user_id %>/<%= todoItem.todolist_id %>?_method=PUT" id ="changeCate">
-              <select name="categoryDropdown" class="categoryDropdown" method="PUT">
-                <% for(let type of types) { %>
-                  <option type="hidden" value="<%=type.id%>" id="<%=type.id%>" ><%=type.type%></option>
-                  <% } %>
-                </select>
-                <input type="submit" value="change category">
-              </form>
+                <form method="POST" action="/users/<%= todoItem.user_id %>/<%= todoItem.todolist_id %>?_method=PUT" id ="changeCate">
+                  <select name="categoryDropdown" class="categoryDropdown" method="PUT">
+                    <% for(let type of types) { %>
+                      <option type="hidden" value="<%=type.id%>" id="<%=type.id%>" ><%=type.type%></option>
+                      <% } %>
+                    </select>
+                    <input type="submit" value="change category">
+                  </form>
 
-              <form action="/users/<%= todoItem.user_id %>/todolist/<%= todoItem.todolist_id %>?_method=DELETE" method="POST">
-                <button >delete</button>
-              </form>
-            </div>
+                  <form action="/users/<%= todoItem.user_id %>/todolist/<%= todoItem.todolist_id %>?_method=DELETE" method="POST">
+                    <button >delete</button>
+                  </form>
+                </div>
 
-            <% } %>
+                <% } %>
+                <% } %>
 
         </section>
         </div>

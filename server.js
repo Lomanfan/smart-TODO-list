@@ -71,7 +71,7 @@ app.get("/", (req, res) => {
      database.getTodo(user)
       .then(data => {
         const userTodoLists = data;
-        // console.dir(userTodoLists);
+        console.dir(userTodoLists);
       database.getAllCategories()
       .then((result) => {
         const types = result;

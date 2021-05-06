@@ -10,6 +10,7 @@ const router  = express.Router();
 const getCategory = require('./getCategory');
 const queryCategory = require('./queryCategory');
 const { getAllCategories } = require('../routes/database');
+const { Router } = require('express');
 // const database = require('./database');
 //TODO:route to sort the todolists by category name
 module.exports = (db) => {
@@ -48,6 +49,7 @@ module.exports = (db) => {
     });
   });
 
+  
 
 
 
@@ -60,7 +62,6 @@ module.exports = (db) => {
     db.getAllCategories()
     .then((result) => {
       const types = result;
-      console.log(types);
 
     getCategory(input)
       .then(res => {
@@ -85,6 +86,7 @@ module.exports = (db) => {
 
     });
   });
+
   return router;
 
 };
