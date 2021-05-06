@@ -27,6 +27,11 @@
 </head>
 
 <body class="all-background">
+  <!-- //TODO: move the inline style to css file
+    //TODO: make the test and the category in the same line for each todolist
+    //TODO: change the style of buttons in todolist
+    //TODO: show the user name on the page instead of login button in the header
+    //TODO: style the page as pretty as we can -->
   <div>
     <nav id="container" class="navbar navbar-light justify-content-between">
       <a class="navbar-brand">SmartList</a>
@@ -54,7 +59,7 @@
     </div>
     <div class="left"></div>
     <div class="middle">
-      <div>
+      <!-- <div> -->
         <h2>My List</h2>
         <% if (userTodoLists.length> 0) { %>
           <% for(let todoItem of userTodoLists) { %>
@@ -99,7 +104,7 @@
               </div>
               <% } %>
                 <% } %>
-      </div>
+      <!-- </div> -->
     </div>
     <div class="right"></div>
     <div class="footer">
