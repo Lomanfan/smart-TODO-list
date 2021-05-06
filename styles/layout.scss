@@ -5,11 +5,7 @@ body {
   background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/38816/image-from-rawpixel-id-2210775-jpeg.jpg);
   background-size: cover;
   width: 100%;
-<<<<<<< HEAD
-  height: 100vh;
-=======
   min-height: 100vh;
->>>>>>> 85f5a199c1b2a2d6c6ccffdbccbcee0dfbc81e78
   display: grid;
   align-items: center;
   justify-items: center;
@@ -67,10 +63,7 @@ body {
     'header header header header'
     'left middle middle right'
     'footer footer footer footer';
-<<<<<<< HEAD
-=======
   padding-bottom: 180px;
->>>>>>> 85f5a199c1b2a2d6c6ccffdbccbcee0dfbc81e78
 }
 
 .left,
@@ -90,11 +83,6 @@ body {
   grid-area: middle;
   background-color: #f1f1f1;
   font-family: Oxygen;
-<<<<<<< HEAD
-}
-
-#lists-body {
-=======
   font-size: 20px
 }
 
@@ -108,7 +96,6 @@ table {
 #lists-body {
   grid-column-start: 0;
   grid-column-end: 0;
->>>>>>> 85f5a199c1b2a2d6c6ccffdbccbcee0dfbc81e78
   margin-left: 50px;
   margin-right: 50px;
   width: 780px;
@@ -119,10 +106,7 @@ div #list {
   display:flex;
   align-items: flex-end;
   justify-content: space-evenly;
-<<<<<<< HEAD
-=======
   align-items: center;
->>>>>>> 85f5a199c1b2a2d6c6ccffdbccbcee0dfbc81e78
 }
 
 .btn-circle {
@@ -142,11 +126,7 @@ div #list {
 /* Style the footer */
 .footer {
   grid-area: footer;
-<<<<<<< HEAD
-  padding: 10px;
-=======
   padding: 12px;
->>>>>>> 85f5a199c1b2a2d6c6ccffdbccbcee0dfbc81e78
   text-align: center;
   background-color: #083D77;
   border-radius: 15px;
