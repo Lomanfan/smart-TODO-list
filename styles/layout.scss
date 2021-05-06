@@ -1,55 +1,133 @@
 // See: https://sass-lang.com/
 
 body {
-  background-color: #c6dfd6;
-  margin-left: 100px;
-  margin-right: 100px;
-
-  h1 {
-    color: black;
-  }
+  font-family: Arial, Helvetica, sans-serif;
+  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/38816/image-from-rawpixel-id-2210775-jpeg.jpg);
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  align-items: center;
+  justify-items: center;
 }
 
-header {
-  display: flex;
-  justify-content: flex-end;
+#container {
+  align-items: center;
+  margin-top: 12px;
+  background-color: transparent;
+  font-size: 20px;
+}
+
+#nav-buttons {
+  font-size: 22px;
+}
+
+#container button {
+  font-size: 20px;
 }
 
 .navbar-brand {
   font-family: 'Ultra', serif;
-  color: black;
+  color:#33363c;
   font-size: 38px;
-}
-
-.user1 {
-  font-size: x-large;
-  font-style: italic;
-}
-
-.container {
-  margin-top: 0px;
-  background-color: white;
   display: flex;
+  align-items: baseline;
+}
+
+#todolist {
+  width: 450px;
+  margin: 15px;
+  padding-top: 0.5;
+  height: 60.99306px;
   justify-content: center;
 }
 
-.text-center {
-  display: flex;
-  justify-content: center;
-  margin-top: 38px;
+/* Style the header */
+.header {
+  grid-area: header;
+  background-color: #083D77;
+  padding: 30px;
+  text-align: center;
+  font-size: 22px;
+  border-radius: 15px;
 }
 
-.lists-body {
-  display: flex;
-  justify-content: center;
-  font-size: large;
-  margin-top: 38px;
+#menu-toggle {
+  position: relative;
 }
 
-// input[type=checkbox]:checked + label {
-//   color:black;
-//   text-decoration: line-through;
-// }
+/* The grid container */
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    'header header header header'
+    'left middle middle right'
+    'footer footer footer footer';
+}
 
+.left,
+.middle,
+.right {
+  padding: 12px;
+}
 
+/* Style the left column */
+.left {
+  grid-area: left;
+  // background-color: #083D77;
+}
 
+/* Style the middle column */
+.middle {
+  grid-area: middle;
+  background-color: #f1f1f1;
+  font-family: Oxygen;
+}
+
+#lists-body {
+  margin-left: 50px;
+  margin-right: 50px;
+  width: 780px;
+  font-size: 23px;
+}
+
+div #list {
+  display:flex;
+  align-items: flex-end;
+  justify-content: space-evenly;
+}
+
+.btn-circle {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 1.428571429;
+}
+
+/* Style the right column */
+.right {
+  grid-area: right;
+}
+
+/* Style the footer */
+.footer {
+  grid-area: footer;
+  padding: 10px;
+  text-align: center;
+  background-color: #083D77;
+  border-radius: 15px;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media (max-width: 600px) {
+  .grid-container  {
+    grid-template-areas:
+      'header header header header'
+      'left left left left'
+      'middle middle middle middle'
+      'right right right right'
+      'footer footer footer footer';
+  }
+}

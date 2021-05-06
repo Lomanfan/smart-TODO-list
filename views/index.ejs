@@ -1,110 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-    <!-- Meta Information -->
-    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'/>
-    <title>smartList</title>
-    <!--External CSS-->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Ultra&display=swap" rel="stylesheet">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
-      integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <!-- App CSS -->
-    <link rel="stylesheet" href="/styles/layout.css" type="text/css"/>
+<head>
+  <!-- External JS -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <!-- Meta Information -->
+  <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0' />
+  <title>smartList</title>
+  <!--External CSS-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Ultra&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300&display=swap" rel="stylesheet">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+    integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <!-- App CSS -->
+  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+</head>
 
-    <!-- External JS -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-
-  </head>
-
-  <body class="all-background">
-    <!-- //TODO: move the inline style to css file
+<body class="all-background">
+  <!-- //TODO: move the inline style to css file
     //TODO: make the test and the category in the same line for each todolist
     //TODO: change the style of buttons in todolist
     //TODO: show the user name on the page instead of login button in the header
     //TODO: style the page as pretty as we can -->
-    <nav class="navbar navbar-light justify-content-between" style="margin-top: 38px; background-color: white;">
+  <div>
+    <nav id="container" class="navbar navbar-light justify-content-between">
       <a class="navbar-brand">SmartList</a>
-      <div class="user1">
-        <p2>Welcome, User 1</p2>
-      </div>
-      </nav>
-      <nav class="navbar navbar-light">
-        <div class="container">
-        <button type="button" class="btn btn-binary sortCategory" style="font-size: large;" name="all">ALL</button>
-        <button type="button" class="btn btn-binary sortCategory" style="font-size: large;" name="to eat">TO EAT</button>
-        <button type="button" class="btn btn-binary sortCategory" style="font-size: large;" name="to read">TO READ</button>
-        <button type="button" class="btn btn-binary sortCategory" style="font-size: large;" name="to watch">TO WATCH</button>
-        <button type="button" class="btn btn-binary sortCategory" style="font-size: large;" name="to shop">TO SHOP</button>
-      </div>
+      <span id="nav-buttons">
+        <button type="button" class="btn btn-binary sortCategory" name="all">ALL</button>
+        <button type="button" class="btn btn-binary  sortCategory" name="to eat">TO EAT</button>
+        <button type="button" class="btn btn-binary  sortCategory" name="to read">TO READ</button>
+        <button type="button" class="btn btn-binary  sortCategory" name="to watch">TO WATCH</button>
+        <button type="button" class="btn btn-binary  sortCategory" name="to shop">TO SHOP</button>
+      </span>
+      <a class="welcome">Welcome Labber~!</a>
     </nav>
-      <div class="text-center">
-      <form method="POST" action="users/<%= userTodoLists[0].user_id %>/new">
-          <input name="todolist" class="justify-content-center" type="text" placeholder="Something you'd like to add"
-            style="width: 450px;margin: 1em;padding-top: 0.5;height: 60.99306px;">
-
-          <button type="submit" class="btn btn-success btn-lg">Add</button>
-        </form>
-      </div>
-
-      <section class = "lists-body">
+  </div>
+  <div class="grid-container">
+    <div class="header">
+      <header>
+        <div>
+          <form method="POST" action="users/<%= user.user_id %>/new">
+            <input name="todolist" id="todolist" class="justify-content-center" type="text"
+              placeholder="Something you'd like to add">
+            <button type="submit" class="btn btn-warning btn-lg">Add</button>
+          </form>
+        </div>
+      </header>
+    </div>
+    <div class="left"></div>
+    <div class="middle">
       <div>
-          <h1>Things to do</h1>
-        <ul>
-          <li>
-          <% for(let todoItem of userTodoLists) { %>
-          <div  class="everyTodo <%= todoItem.type%>">
-              <form action="/users/<%= todoItem.user_id %>/todolist/<%= todoItem.todolist_id %>?_method=DELETE" method="POST">
-                <input type ="checkbox" id= "<%=todoItem.id %>" name ="<%=todoItem.id %>" class = "checkbox">
-                <!-- <label for="<%=todoItem.id %>"> <%=todoItem.user_id %></label> -->
-                <form action="" method="POST" class="">
-                  <label for="<%=todoItem.type %>"><%=todoItem.type %></label> <label for="<%=todoItem.id %>" > <%=todoItem.user_input %></label>
-                  <button >delete</button>
-                </form>
-                <!-- <label for="<%=todoItem.id %>" > <%=todoItem.user_input %></label> -->
-                <!-- <button >delete</button> -->
-              </form>
-              <!-- <form action="" method="POST" class="">
-                <label for="<%=todoItem.type %>"><%=todoItem.type %></label>
-              </form> -->
-
-
-              <form method="POST" action="/users/<%= todoItem.user_id %>/<%= todoItem.todolist_id %>?_method=PUT" id ="changeCate">
-
-                  <select name="categoryDropdown" class="categoryDropdown" method="PUT">
-                    <% for(let type of types) { %>
-                      <option type="hidden" value="<%=type.id%>" id="<%=type.id%>" ><%=type.type%></option>
-                      <% } %>
-                    </select>
-                    <input type="submit" value="change category">
-              </form>
-
-            </div>
-            <% } %>
-            <li>
-          </ul>
-          </div>
-      </section>
-    <!-- <div class="grid">
-      <div><img src="/images/HarryPotterBooks.png" alt="HarryPotterBook"></div>
-      <div><img src="/images/HarryPotterBooks.png" alt="HarryPotterBook"></div>
-      <div><img src="/images/HarryPotterBooks.png" alt="HarryPotterBook"></div>
-      <div><img src="/images/HarryPotterBooks.png" alt="HarryPotterBook"></div>
-    </div> -->
+        <h2>My List</h2>
+        <section class="lists-body" id="lists-body">
+          <!-- <ol> -->
+          <!-- <li> -->
+          <% if (userTodoLists.length> 0) { %>
+            <% for(let todoItem of userTodoLists) { %>
+              <div class="everyTodo <%= todoItem.type%>">
+                <div id="list">
+                  <div class="checkbox">
+                    <input type="checkbox" id="<%=todoItem.id %>" name="<%=todoItem.id %>" class="checkbox">
+                    <label for="<%=todoItem.type %>">
+                      <!-- <%=todoItem.type %> -->
+                    </label>
+                    <tag>
+                      <%=todoItem.user_input %>
+                    </tag>
+                    <form method="POST" action="/users/<%= todoItem.user_id %>/<%= todoItem.todolist_id %>?_method=PUT"
+                      id="changeCate">
+                      <!-- <%=todoItem.type %> -->
+                        <button type="submit" class="button is-primary is-rounded"><strong>Update</strong></button>
+                        <select class="btn btn-danger dropdown-toggle" name="categoryDropdown" class="categoryDropdown"
+                          method="PUT">
+                          <% for(let type of types) { %>
+                            <option></option>
+                            <option type="hidden" value="<%=type.id%>" id="<%=type.id%>">
+                              <%=type.type%>
+                            </option>
+                            <% } %>
+                        </select>
+                    </form>
+                    <form action="/users/<%= todoItem.user_id %>/todolist/<%= todoItem.todolist_id %>?_method=DELETE"
+                      method="POST">
+                      <button type="submit" class="btn btn-warning btn-circle"><i
+                          class="glyphicon glyphicon-remove"></i></button>
+                        </form>
+                  </div>
+                </div>
+              </div>
+              <% } %>
+                <% } %>
+                  <!-- </li>
+          </ol> -->
+        </section>
+      </div>
+    </div>
+    <div class="right"></div>
+    <div class="footer">
+      <p>
+        smartList created by Jessie Pei, Kiup Kim, Loman Fan @ 2021 LHL
+      </p>
+    </div>
 
     <script type="text/javascript" src="/scripts/app.js"></script>
+    <!-- <script type="./routes/users.js"></script> -->
     <!-- Bootstrap JS -->
-      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
-  </body>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"></script>
 
-</html
+</body>
+
+</html>
