@@ -77,11 +77,7 @@ app.get("/", (req, res) => {
         const types = result;
         console.log(types);
         // const userTodoLists = todoLists;
-<<<<<<< HEAD
-        res.render("index",{userTodoLists,types});
-=======
         res.render("index",{userTodoLists,types,user});
->>>>>>> origin/onePageIndex
       })
     })
       .catch(err => {

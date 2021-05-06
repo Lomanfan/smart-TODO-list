@@ -56,10 +56,10 @@
     <div class="middle">
       <div>
         <h2>My List</h2>
-        <table>
-          <% if (userTodoLists.length> 0) { %>
-            <% for(let todoItem of userTodoLists) { %>
-              <div class="everyTodo <%= todoItem.type %>">
+        <% if (userTodoLists.length> 0) { %>
+          <% for(let todoItem of userTodoLists) { %>
+            <div class="everyTodo <%= todoItem.type %>">
+              <table>
                 <tr>
                   <td>
                     <tag>
@@ -75,7 +75,7 @@
                       id="changeCate">
                       <select class="btn btn-danger dropdown-toggle" name="categoryDropdown" class="categoryDropdown"
                         method="PUT">
-                        <option></option>
+              
                         <% for(let type of types) { %>
                           <option type="hidden" value="<%=type.id%>" id="<%=type.id%>">
                             <%=type.type%>
@@ -95,10 +95,10 @@
                     </form>
                   </td>
                 </tr>
+              </table>
               </div>
               <% } %>
                 <% } %>
-        </table>
       </div>
     </div>
     <div class="right"></div>
