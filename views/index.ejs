@@ -51,33 +51,30 @@
       <div>
           <h1>Things to do</h1>
       <section class = "lists-body">
-        <!-- <ol> -->
+
           <% for(let todoItem of userTodoLists) { %>
           <div  class="everyTodo <%= todoItem.type%>">
+            <input type ="checkbox" id= "<%=todoItem.id %>" name ="<%=todoItem.id %>" class = "checkbox">
+
+            <p> <%=todoItem.user_input %></p>
+            <p class="todoText"><%=todoItem.type %></p>
+
+            <form method="POST" action="/users/<%= todoItem.user_id %>/<%= todoItem.todolist_id %>?_method=PUT" id ="changeCate">
+              <select name="categoryDropdown" class="categoryDropdown" method="PUT">
+                <% for(let type of types) { %>
+                  <option type="hidden" value="<%=type.id%>" id="<%=type.id%>" ><%=type.type%></option>
+                  <% } %>
+                </select>
+                <input type="submit" value="change category">
+              </form>
+
               <form action="/users/<%= todoItem.user_id %>/todolist/<%= todoItem.todolist_id %>?_method=DELETE" method="POST">
-                <input type ="checkbox" id= "<%=todoItem.id %>" name ="<%=todoItem.id %>" class = "checkbox">
-                <!-- <label for="<%=todoItem.id %>"> <%=todoItem.user_id %></label> -->
-                <label for="<%=todoItem.id %>" > <%=todoItem.user_input %></label>
                 <button >delete</button>
               </form>
-              <form action="" method="POST" class="">
-                <label for="<%=todoItem.type %>"><%=todoItem.type %></label>
-              </form>
-
-
-              <form method="POST" action="/users/<%= todoItem.user_id %>/<%= todoItem.todolist_id %>?_method=PUT" id ="changeCate">
-
-                  <select name="categoryDropdown" class="categoryDropdown" method="PUT">
-                    <% for(let type of types) { %>
-                      <option type="hidden" value="<%=type.id%>" id="<%=type.id%>" ><%=type.type%></option>
-                      <% } %>
-                    </select>
-                    <input type="submit" value="change category">
-              </form>
-
             </div>
+
             <% } %>
-          <!-- </ol> -->
+
         </section>
         </div>
     <div class="grid">
@@ -101,3 +98,6 @@
   </body>
 
 </html
+
+
+
