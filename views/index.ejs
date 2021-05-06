@@ -2,6 +2,9 @@
 <html lang="en">
 
 <head>
+  <!-- External JS -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
   <!-- Meta Information -->
   <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0' />
   <title>smartList</title>
@@ -21,9 +24,6 @@
     integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
   <!-- App CSS -->
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
-  <!-- External JS -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </head>
 
 <body class="all-background">
@@ -31,11 +31,11 @@
     <nav id="container" class="navbar navbar-light justify-content-between">
       <a class="navbar-brand">SmartList</a>
       <span id="nav-buttons">
-        <button type="button" class="btn btn-binary">ALL</button>
-        <button type="button" class="btn btn-binary">TO EAT</button>
-        <button type="button" class="btn btn-binary">TO READ</button>
-        <button type="button" class="btn btn-binary">TO WATCH</button>
-        <button type="button" class="btn btn-binary">TO SHOP</button>
+        <button type="button" class="btn btn-binary sortCategory">ALL</button>
+        <button type="button" class="btn btn-binary sortCategory">TO EAT</button>
+        <button type="button" class="btn btn-binary sortCategory">TO READ</button>
+        <button type="button" class="btn btn-binary sortCategory">TO WATCH</button>
+        <button type="button" class="btn btn-binary sortCategory">TO SHOP</button>
       </span>
       <a class="welcome">Welcome Labber~!</a>
     </nav>
@@ -57,48 +57,47 @@
       <div>
         <h2>My List</h2>
         <table>
-          <% for(let todoItem of userTodoLists) { %>
-            <tr align="center">
-              <td><div class="everyTodo <%= todoItem.type%>"></td>
-              <td>
-                <!-- <div class="list"> -->
-                <form action="/users/<%= todoItem.user_id %>/todolist/<%= todoItem.todolist_id %>?_method=DELETE"
-                  method="POST">
-                  <!-- <td><input type="checkbox" id="<%=todoItem.id %>" name="<%=todoItem.id %>" class="checkbox"></td> -->
-                  <!-- <form action="" method="POST" class=""> -->
-                  <!-- <label for="<%=todoItem.type %>">
-                            <%=todoItem.type %>
-                          </label> -->
-                  <tag>
-                    <%=todoItem.user_input %>
-                  </tag>
-                  <button type="submit" class="btn btn-warning btn-circle"><i
-                      class="glyphicon glyphicon-remove"></i></button>
-                  <!-- </form> -->
-                </form>
-              </td>
-              <td>
-                <%=todoItem.type %>
-              </td>
-              <td>
-                <form method="POST" action="/users/<%= todoItem.user_id %>/<%= todoItem.todolist_id %>?_method=PUT"
-                  id="changeCate">
-                  <select class="btn btn-danger dropdown-toggle" name="categoryDropdown" class="categoryDropdown"
-                    method="PUT">
-                    <option></option>
-                    <% for(let type of types) { %>
-                      <option type="hidden" value="<%=type.id%>" id="<%=type.id%>">
-                        <%=type.type%>
-                      </option>
-                      <% } %>
-                  </select>
-                  <button type="submit" class="button is-primary is-rounded"
-                    style="margin-bottom:10px"><strong>Update</strong></button>
-                </form>
-                </div>
-              </td>
-            </tr>
-            <% } %>
+          <% if (userTodoLists.length> 0) { %>
+            <% for(let todoItem of userTodoLists) { %>
+              <div class="everyTodo <%= todoItem.type %>">
+                <tr>
+                  <td>
+                    <tag>
+                      <%=todoItem.user_input %>
+                    </tag>
+                    <!-- <div class="list"> -->
+                  </td>
+                  <td>
+                    <%=todoItem.type %>
+                  </td>
+                  <td>
+                    <form method="POST" action="/users/<%= todoItem.user_id %>/<%= todoItem.todolist_id %>?_method=PUT"
+                      id="changeCate">
+                      <select class="btn btn-danger dropdown-toggle" name="categoryDropdown" class="categoryDropdown"
+                        method="PUT">
+                        <option></option>
+                        <% for(let type of types) { %>
+                          <option type="hidden" value="<%=type.id%>" id="<%=type.id%>">
+                            <%=type.type%>
+                          </option>
+                          <% } %>
+                      </select>
+                      <button type="submit" class="button is-primary is-rounded"
+                        style="margin-bottom:10px"><strong>Update</strong></button>
+                    </form>
+                  </td>
+                  <td>
+                    <form action="/users/<%= todoItem.user_id %>/todolist/<%= todoItem.todolist_id %>?_method=DELETE"
+                      method="POST">
+                      <button type="submit" class="btn btn-warning btn-circle"><i
+                          class="glyphicon glyphicon-remove"></i>
+                      </button>
+                    </form>
+                  </td>
+                </tr>
+              </div>
+              <% } %>
+                <% } %>
         </table>
       </div>
     </div>
@@ -110,7 +109,7 @@
     </div>
 
     <script type="text/javascript" src="/scripts/app.js"></script>
-    <script type="./routes/users.js"></script>
+    <!-- <script type="./routes/users.js"></script> -->
     <!-- Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
       integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
