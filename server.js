@@ -77,7 +77,7 @@ app.get("/", (req, res) => {
         const types = result;
         console.log(types);
         // const userTodoLists = todoLists;
-        res.render("index",{userTodoLists,types});
+        res.render("index",{userTodoLists,types,user});
       })
     })
       .catch(err => {

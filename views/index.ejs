@@ -13,107 +13,91 @@
       integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <!-- App CSS -->
     <link rel="stylesheet" href="/styles/layout.css" type="text/css"/>
+
+    <!-- External JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
   </head>
 
-<body class="all-background">
-  <!-- //TODO: move the inline style to css file
-  //TODO: make the test and the category in the same line for each todolist
-  //TODO: change the style of buttons in todolist
-  //TODO: show the user name on the page instead of login button in the header
-  //TODO: style the page as pretty as we can -->
-  <nav class="navbar navbar-light justify-content-between" style="margin-top: 38px;">
-    <a class="navbar-brand">SmartList</a>
-    <div>
-      <button type="button" class="btn btn-binary" style="font-size: x-large;">ALL</button>
-      <button type="button" class="btn btn-binary" style="font-size: x-large;">TO EAT</button>
-      <button type="button" class="btn btn-binary" style="font-size: x-large;">TO READ</button>
-      <button type="button" class="btn btn-binary" style="font-size: x-large;">TO WATCH</button>
-      <button type="button" class="btn btn-binary" style="font-size: x-large;">TO SHOP</button>
-    </div>
+  <body class="all-background">
+    <!-- //TODO: move the inline style to css file
+    //TODO: make the test and the category in the same line for each todolist
+    //TODO: change the style of buttons in todolist
+    //TODO: show the user name on the page instead of login button in the header
+    //TODO: style the page as pretty as we can -->
+    <nav class="navbar navbar-light justify-content-between" style="margin-top: 38px;">
+      <a class="navbar-brand">SmartList</a>
+      <div>
+        <button type="button" class="btn btn-binary sortCategory" style="font-size: x-large;" name="all">ALL</button>
+        <button type="button" class="btn btn-binary sortCategory" style="font-size: x-large;" name="to eat">TO EAT</button>
+        <button type="button" class="btn btn-binary sortCategory" style="font-size: x-large;" name="to read">TO READ</button>
+        <button type="button" class="btn btn-binary sortCategory" style="font-size: x-large;" name="to watch">TO WATCH</button>
+        <button type="button" class="btn btn-binary sortCategory" style="font-size: x-large;" name="to shop">TO SHOP</button>
+      </div>
 
-    <div>
-      <!-- <button type="button" class="btn btn-dark">USER 1</button> -->
-      <p2 style="font-style: italic;">Welcome, User 1</p2>
-    </div>
-  </nav>
-    <div class="text-center" style="display: flex;">
-     <form method="POST" action="users/<%= userTodoLists[0].user_id %>/new">
-        <input name="todolist" class="justify-content-center" type="text" placeholder="Something you'd like to add"
-          style="width: 450px;margin: 1em;padding-top: 0.5;height: 60.99306px;">
+      <div>
+        <p2 style="font-style: italic;">Welcome, User 1</p2>
+      </div>
+    </nav>
+      <div class="text-center" style="display: flex;">
+      <form method="POST" action="users/<%= userTodoLists[0].user_id %>/new">
+          <input name="todolist" class="justify-content-center" type="text" placeholder="Something you'd like to add"
+            style="width: 450px;margin: 1em;padding-top: 0.5;height: 60.99306px;">
 
-        <button type="submit" class="btn btn-warning btn-lg">Add</button>
-      </form>
-    </div>
+          <button type="submit" class="btn btn-warning btn-lg">Add</button>
+        </form>
+      </div>
 
-    <div>
-      <!-- <h1>Things to do</h1>
+      <div>
+          <h1>Things to do</h1>
       <section class = "lists-body">
-        <ol>
-          <li>
-            <% for(let userTodoList of userTodoLists) { %>
-              <form action="/users/<%= userTodoList.user_id %>/todolist/<%= userTodoList.todolist_id %>?_method=DELETE" method="POST" class="">
-                <input type ="checkbox" id= "<%=userTodoList.id %>" name ="<%=userTodoList.id %>" class = "checkbox">
-                <label for="<%=userTodoList.id %>"> <%=userTodoList.user_id %></label>
-                <label for="<%=userTodoList.id %>"> <%=userTodoList.user_input %></label>
+        <!-- <ol> -->
+          <% for(let todoItem of userTodoLists) { %>
+          <div  class="everyTodo <%= todoItem.type%>">
+              <form action="/users/<%= todoItem.user_id %>/todolist/<%= todoItem.todolist_id %>?_method=DELETE" method="POST">
+                <input type ="checkbox" id= "<%=todoItem.id %>" name ="<%=todoItem.id %>" class = "checkbox">
+                <!-- <label for="<%=todoItem.id %>"> <%=todoItem.user_id %></label> -->
+                <label for="<%=todoItem.id %>" > <%=todoItem.user_input %></label>
                 <button >delete</button>
               </form>
               <form action="" method="POST" class="">
-                <label for="<%=userTodoList.type %>"><%=userTodoList.type %></label>
-                <input type= "submit" name="userTodoList.type" value="change category">
+                <label for="<%=todoItem.type %>"><%=todoItem.type %></label>
               </form>
-              <% } %>
-            </li>
-          </ol>
-        </section> -->
-        <h1>Things to do</h1>
-    <section class = "lists-body">
-      <ol>
-        <li>
-          <% for(let todoItem of userTodoLists) { %>
-            <form action="/users/<%= todoItem.user_id %>/todolist/<%= todoItem.todolist_id %>?_method=DELETE" method="POST" class="">
-              <input type ="checkbox" id= "<%=todoItem.id %>" name ="<%=todoItem.id %>" class = "checkbox">
-              <label for="<%=todoItem.id %>"> <%=todoItem.user_id %></label>
-              <label for="<%=todoItem.id %>"> <%=todoItem.user_input %></label>
-              <button >delete</button>
-            </form>
-            <form action="" method="POST" class="">
-              <label for="<%=todoItem.type %>"><%=todoItem.type %></label>
-            </form>
 
 
-            <form method="POST" action="/users/<%= todoItem.user_id %>/<%= todoItem.todolist_id %>?_method=PUT" id ="changeCate">
+              <form method="POST" action="/users/<%= todoItem.user_id %>/<%= todoItem.todolist_id %>?_method=PUT" id ="changeCate">
 
-                <select name="categoryDropdown" class="categoryDropdown" method="PUT">
-                  <% for(let type of types) { %>
-                    <option type="hidden" value="<%=type.id%>" id="<%=type.id%>" ><%=type.type%></option>
-                    <% } %>
-                  </select>
-                  <input type="submit" value="change category">
-            </form>
-          <% } %>
+                  <select name="categoryDropdown" class="categoryDropdown" method="PUT">
+                    <% for(let type of types) { %>
+                      <option type="hidden" value="<%=type.id%>" id="<%=type.id%>" ><%=type.type%></option>
+                      <% } %>
+                    </select>
+                    <input type="submit" value="change category">
+              </form>
 
-          </li>
-        </ol>
-      </section>
-      </div>
-  <div class="grid">
-    <div><img src="/images/HarryPotterBooks.png" alt="HarryPotterBook"></div>
-    <div><img src="/images/HarryPotterBooks.png" alt="HarryPotterBook"></div>
-    <div><img src="/images/HarryPotterBooks.png" alt="HarryPotterBook"></div>
-    <div><img src="/images/HarryPotterBooks.png" alt="HarryPotterBook"></div>
-  </div>
+            </div>
+            <% } %>
+          <!-- </ol> -->
+        </section>
+        </div>
+    <div class="grid">
+      <div><img src="/images/HarryPotterBooks.png" alt="HarryPotterBook"></div>
+      <div><img src="/images/HarryPotterBooks.png" alt="HarryPotterBook"></div>
+      <div><img src="/images/HarryPotterBooks.png" alt="HarryPotterBook"></div>
+      <div><img src="/images/HarryPotterBooks.png" alt="HarryPotterBook"></div>
+    </div>
 
-    <script type="./routes/users.js"></script>
-  <!-- Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-      crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-      crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-      crossorigin="anonymous"></script>
-</body>
+    <script type="text/javascript" src="/scripts/app.js"></script>
+    <!-- Bootstrap JS -->
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+  </body>
 
 </html
