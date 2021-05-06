@@ -60,32 +60,25 @@
           <ol>
 
             <% for(let todoItem of userTodoLists) { %>
+              <div class="everyTodo <%= todoItem.type%>">
               <li>
                 <div id="list">
-                  <form action="/users/<%= todoItem.user_id %>/todolist/<%= todoItem.todolist_id %>?_method=DELETE"
-                    method="POST" class="">
+                  <form action="/users/<%= todoItem.user_id %>/todolist/<%= todoItem.todolist_id %>?_method=DELETE" method="POST">
                     <div class="checkbox">
                       <input type="checkbox" id="<%=todoItem.id %>" name="<%=todoItem.id %>" class="checkbox">
-                      <label for="<%=todoItem.id %>">
-                        <%=todoItem.user_id %>
-                      </label>
-                      <label for="<%=todoItem.id %>">
-                        <%=todoItem.user_input %>
-                      </label>
-                      <button type="button" class="btn btn-warning btn-circle"><i
-                          class="glyphicon glyphicon-remove"></i></button>
+
+                      <form action="" method="POST" class="">
+
+                        <label for="<%=todoItem.type %>">
+                          <%=todoItem.type %>
+                        </label> <label for="<%=todoItem.id %>">
+                          <%=todoItem.user_input %>
+                        </label>
+                        <button type="submit" class="btn btn-warning btn-circle"><i class="glyphicon glyphicon-remove"></i></button>
+
                     </div>
                   </form>
-
-
-
-                  <!-- <form action="" method="POST" class="">
-                    <label for="<%=todoItem.type %>">
-                      <%=todoItem.type %>
-                    </label>
-                    <input type="submit" name="todoItem.type" value="update category">
-                    <div class="buttons"></div>
-                  </form> -->
+                  </form>
 
                   <form method="POST" action="/users/<%= todoItem.user_id %>/<%= todoItem.todolist_id %>?_method=PUT"
                     id="changeCate">
@@ -99,7 +92,6 @@
                           <% } %>
                       </select>
                   </form>
-
 
                 </div>
               </li>
