@@ -1,44 +1,157 @@
 // See: https://sass-lang.com/
 
-body {
-  background-color: white;
-  margin-left: 100px;
-  margin-right: 100px;
 
-  h1 {
-    color: #244751;
-  }
-}
+// header {
+//   display: flex;
+//   justify-content: flex-end;
+// }
 
-header {
-  display: flex;
-  justify-content: flex-end;
-}
+// .nav #container {
+//   align-items: baseline;
+//   background-color: red;
+// }
 
 .navbar-brand {
   font-family: 'Ultra', serif;
-  color: black;
+  color:#33363c;
   font-size: 38px;
+  display: flex;
+  align-items: baseline;
+  margin-top: 30px;
+  margin-bottom: 15px;
+  padding-bottom: 36px;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  // grid-template-columns: 50px, 50px, 50px, 50px;
-  grid-gap: 10rem;
+
+// .grid {
+//   display: grid;
+//   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+//   // grid-template-columns: 50px, 50px, 50px, 50px;
+//   grid-gap: 10rem;
+//   border-radius: 50px;
+//   // border: 3px solid #BADA55;
+// }
+
+// .grid img {
+//   margin-top: 120px;
+//   border-radius: 8px;
+//   border: 1px solid #ddd;
+//   padding: 5px;
+//   width: 200px;
+
+// }
+
+// img:hover {
+//   box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+// }
+
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin-left: 100px;
+  margin-right: 100px;
+  background-color: #d1fcff;
   border-radius: 50px;
-  // border: 3px solid #BADA55;
-}
-
-.grid img {
-  margin-top: 120px;
-  border-radius: 8px;
-  border: 1px solid #ddd;
-  padding: 5px;
-  width: 200px;
 
 }
 
-img:hover {
-  box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+/* Style the header */
+.header {
+  grid-area: header;
+  background-color: #193849;
+  padding: 30px;
+  text-align: center;
+  font-size: 22px;
+}
+
+#menu-toggle {
+  position: relative;
+}
+
+/* The grid container */
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    'header header header header'
+    'left middle middle right'
+    'footer footer footer footer';
+
+  background-color: white;
+  border: 5px solid #eebe5b;
+  border-image-source: url(https://www.leniolabs.com/images/border.svg);
+  border-image-slice: 190;
+  border-image-width: 6;
+  border-image-outset: 2;
+}
+
+.left,
+.middle,
+.right {
+  padding: 12px;
+}
+
+/* Style the left column */
+.left {
+  grid-area: left;
+  background-color: #ccc;
+}
+
+/* Style the middle column */
+.middle {
+  grid-area: middle;
+  background-color: #f1f1f1;
+  // text-align: center;
+  // display: grid;
+  // justify-items: stretch;
+}
+
+#lists-body {
+  margin-left: 50px;
+  margin-right: 50px;
+  width: 780px;
+  font-size: 23px;
+}
+
+div #list {
+  display:flex;
+  align-items: flex-end;
+  justify-content: space-evenly;
+}
+
+
+.btn-circle {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 1.428571429;
+  border-radius: 15px;
+}
+
+
+/* Style the right column */
+.right {
+  grid-area: right;
+  background-color: #ccc;
+}
+
+/* Style the footer */
+.footer {
+  grid-area: footer;
+  padding: 10px;
+  text-align: center;
+  background-color: #193849;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media (max-width: 600px) {
+  .grid-container  {
+    grid-template-areas:
+      'header header header header'
+      'left left left left'
+      'middle middle middle middle'
+      'right right right right'
+      'footer footer footer footer';
+  }
 }
