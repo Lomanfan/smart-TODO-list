@@ -21,7 +21,7 @@ const getToDo = (user) => {
   where users.id = $${queryParams.length}
   order by todolist.id DESC;`
   return pool.query(queryString, queryParams).then((data) => {
-    // console.dir((data.rows))
+    console.dir((data.rows))
   return  data.rows;
 });
 }
