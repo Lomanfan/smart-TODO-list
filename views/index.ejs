@@ -36,11 +36,11 @@
     <nav id="container" class="navbar navbar-light justify-content-between">
       <a class="navbar-brand">SmartList</a>
       <span id="nav-buttons">
-        <button type="button" class="btn btn-binary sortCategory" name="all">ALL</button>
-        <button type="button" class="btn btn-binary  sortCategory" name="to eat">TO EAT</button>
-        <button type="button" class="btn btn-binary  sortCategory" name="to read">TO READ</button>
-        <button type="button" class="btn btn-binary  sortCategory" name="to watch">TO WATCH</button>
-        <button type="button" class="btn btn-binary  sortCategory" name="to shop">TO SHOP</button>
+        <button type="button" class="btn btn-binary sortCategory">ALL</button>
+        <button type="button" class="btn btn-binary sortCategory">TO EAT</button>
+        <button type="button" class="btn btn-binary sortCategory">TO READ</button>
+        <button type="button" class="btn btn-binary sortCategory">TO WATCH</button>
+        <button type="button" class="btn btn-binary sortCategory">TO SHOP</button>
       </span>
       <a class="welcome">Welcome Labber~!</a>
     </nav>
@@ -61,50 +61,49 @@
     <div class="middle">
       <div>
         <h2>My List</h2>
-        <section class="lists-body" id="lists-body">
-          <!-- <ol> -->
-          <!-- <li> -->
-          <% if (userTodoLists.length> 0) { %>
-            <% for(let todoItem of userTodoLists) { %>
-              <div class="everyTodo <%= todoItem.type%>">
-                <div id="list">
-                  <div class="checkbox">
-                    <input type="checkbox" id="<%=todoItem.id %>" name="<%=todoItem.id %>" class="checkbox">
-                    <label for="<%=todoItem.type %>">
-                      <!-- <%=todoItem.type %> -->
-                    </label>
+        <% if (userTodoLists.length> 0) { %>
+          <% for(let todoItem of userTodoLists) { %>
+            <div class="everyTodo <%= todoItem.type %>">
+              <table>
+                <tr>
+                  <td>
                     <tag>
                       <%=todoItem.user_input %>
                     </tag>
+                    <!-- <div class="list"> -->
+                  </td>
+                  <td>
+                    <%=todoItem.type %>
+                  </td>
+                  <td>
                     <form method="POST" action="/users/<%= todoItem.user_id %>/<%= todoItem.todolist_id %>?_method=PUT"
                       id="changeCate">
-                      <%=todoItem.type %>
-                        <button type="submit" class="button is-primary is-rounded"><strong>Update</strong></button>
-                        <select class="btn btn-danger dropdown-toggle" name="categoryDropdown" class="categoryDropdown"
-                          method="PUT">
-                          <% for(let type of types) { %>
-                            <option></option>
-                            <option type="hidden" value="<%=type.id%>" id="<%=type.id%>">
-                              <%=type.type%>
-                            </option>
-                            <% } %>
-                        </select>
-                    </form>
+                      <select class="btn btn-danger dropdown-toggle" name="categoryDropdown" class="categoryDropdown"
+                        method="PUT">
 
+                        <% for(let type of types) { %>
+                          <option type="hidden" value="<%=type.id%>" id="<%=type.id%>">
+                            <%=type.type%>
+                          </option>
+                          <% } %>
+                      </select>
+                      <button type="submit" class="button is-primary is-rounded"
+                        style="margin-bottom:10px"><strong>Update</strong></button>
+                    </form>
+                  </td>
+                  <td>
                     <form action="/users/<%= todoItem.user_id %>/todolist/<%= todoItem.todolist_id %>?_method=DELETE"
                       method="POST">
                       <button type="submit" class="btn btn-warning btn-circle"><i
-                          class="glyphicon glyphicon-remove"></i></button>
-                        </form>
-                  </div>
-
-                </div>
+                          class="glyphicon glyphicon-remove"></i>
+                      </button>
+                    </form>
+                  </td>
+                </tr>
+              </table>
               </div>
               <% } %>
                 <% } %>
-                  <!-- </li>
-          </ol> -->
-        </section>
       </div>
     </div>
     <div class="right"></div>
