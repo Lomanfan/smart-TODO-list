@@ -6,8 +6,10 @@ $(() => {
       $(".everyTodo").css( "display", "block" );
     } else {
     sortCate = sortCate.split(' ')[1];
+    console.log(sortCate);
     $(".everyTodo").hide();
     $(".everyTodo").filter(`.${sortCate}`).css( "display", "block" );
+    console.log($(".everyTodo").filter(`.${sortCate}`));
     }
   });
 
