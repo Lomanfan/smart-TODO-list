@@ -16,6 +16,9 @@
     integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
   <!-- App CSS -->
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+  <!-- External JS -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </head>
 
 <body class="all-background">
@@ -56,32 +59,47 @@
         <section class="lists-body" id="lists-body">
           <ol>
 
-            <% for(let userTodoList of userTodoLists) { %>
+            <% for(let todoItem of userTodoLists) { %>
               <li>
                 <div id="list">
-                  <form
-                    action="/users/<%= userTodoList.user_id %>/todolist/<%= userTodoList.todolist_id %>?_method=DELETE"
+                  <form action="/users/<%= todoItem.user_id %>/todolist/<%= todoItem.todolist_id %>?_method=DELETE"
                     method="POST" class="">
                     <div class="checkbox">
-                      <input type="checkbox" id="<%=userTodoList.id %>" name="<%=userTodoList.id %>" class="checkbox">
-                      <label for="<%=userTodoList.id %>">
-                        <%=userTodoList.user_id %>
+                      <input type="checkbox" id="<%=todoItem.id %>" name="<%=todoItem.id %>" class="checkbox">
+                      <label for="<%=todoItem.id %>">
+                        <%=todoItem.user_id %>
                       </label>
-                      <label for="<%=userTodoList.id %>">
-                        <%=userTodoList.user_input %>
+                      <label for="<%=todoItem.id %>">
+                        <%=todoItem.user_input %>
                       </label>
                       <button type="button" class="btn btn-warning btn-circle"><i
                           class="glyphicon glyphicon-remove"></i></button>
                     </div>
                   </form>
 
-                  <form action="" method="POST" class="">
-                    <label for="<%=userTodoList.type %>">
-                      <%=userTodoList.type %>
+
+
+                  <!-- <form action="" method="POST" class="">
+                    <label for="<%=todoItem.type %>">
+                      <%=todoItem.type %>
                     </label>
-                    <input type="submit" name="userTodoList.type" value="update category">
+                    <input type="submit" name="todoItem.type" value="update category">
                     <div class="buttons"></div>
+                  </form> -->
+
+                  <form method="POST" action="/users/<%= todoItem.user_id %>/<%= todoItem.todolist_id %>?_method=PUT"
+                    id="changeCate">
+                    <%=todoItem.type %>
+                      <input type="submit" value="change category">
+                      <select name="categoryDropdown" class="categoryDropdown" method="PUT">
+                        <% for(let type of types) { %>
+                          <option type="hidden" value="<%=type.id%>" id="<%=type.id%>">
+                            <%=type.type%>
+                          </option>
+                          <% } %>
+                      </select>
                   </form>
+
 
                 </div>
               </li>
@@ -104,7 +122,7 @@
     <div class="footer">
       <p>Footer</p>
     </div>
-
+    <script type="text/javascript" src="/scripts/app.js"></script>
     <script type="./routes/users.js"></script>
     <!-- Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
