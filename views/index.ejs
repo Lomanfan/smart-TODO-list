@@ -71,9 +71,9 @@
                     <label for="<%=todoItem.type %>">
                       <!-- <%=todoItem.type %> -->
                     </label>
-                    <p>
+                    <tag>
                       <%=todoItem.user_input %>
-                    </p>
+                    </tag>
                     <form method="POST" action="/users/<%= todoItem.user_id %>/<%= todoItem.todolist_id %>?_method=PUT" id="changeCate">
                       <%=todoItem.type %>
                         <button type="submit" class="button is-primary is-rounded"><strong>Update</strong></button>
