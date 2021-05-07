@@ -1,4 +1,6 @@
 //buttons to sort todo-list by category type after DOM is ready
+
+//buttons to sort todo-list by category type after DOM is ready
 $(() => {
   $(".sortCategory").on('click',function(){
     let sortCate = $(this).text().toLocaleLowerCase();
@@ -32,5 +34,3 @@ $(() => {
     })
   })
 });
-
-
