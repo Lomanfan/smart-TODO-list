@@ -56,6 +56,10 @@
             <button type="submit" class="btn btn-warning btn-lg">Add</button>
           </form>
         </div>
+        <div class="error-message">
+          <p id="error-message-empty">empty! please say something</p>
+        </div>
+
       </header>
     </div>
     <div class="left"></div>
@@ -67,7 +71,7 @@
             <div class="everyTodo <%= todoItem.type %>">
               <table>
                 <tr>
-                  <td>
+                  <td id="todo-text">
                     <tag>
                       <%=todoItem.user_input %>
                     </tag>
@@ -98,7 +102,7 @@
                       id="changeCate">
                       <select class="btn btn-danger dropdown-toggle" name="categoryDropdown" class="categoryDropdown"
                         method="PUT">
-
+                
                         <% for(let type of types) { %>
                           <option type="hidden" value="<%=type.id%>" id="<%=type.id%>">
                             <%=type.type%>
