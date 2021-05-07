@@ -24,6 +24,8 @@ body {
 
 #container button {
   font-size: 20px;
+  color: rgb(6, 6, 124);
+  font-weight: bold;
 }
 
 .navbar-brand {
@@ -129,6 +131,7 @@ div #list {
   text-align: center;
   background-color: #083D77;
   border-radius: 15px;
+  color: #f1f1f1;
 }
 
 /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
@@ -146,4 +149,15 @@ div #list {
 #todo-text {
   width: 150px;
 }
+.error-message{
+  color: red;
+  // height: 30px;
+  font-size: 30px;
+}
 
+#error-message-empty {
+  display: none;
+}
+.icon{
+  width: 40px;
+}

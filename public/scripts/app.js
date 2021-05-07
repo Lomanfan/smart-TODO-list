@@ -2,7 +2,6 @@
 
 //buttons to sort todo-list by category type after DOM is ready
 $(() => {
-  // console.log("hiiiiiiiii")
   $(".sortCategory").on('click',function(){
     let sortCate = $(this).text().toLocaleLowerCase();
     if (sortCate ==='all') {
@@ -14,27 +13,24 @@ $(() => {
     }
   });
 
-  $(".new-tweet-form").submit(function (event) {
+  $(".addNewTodo").submit(function (event) {
     event.preventDefault();
-    let textContent = $("#tweet-text").val();
-    if (textContent.length > 140) {
-      $('#error-message-over').slideDown();
-      return;
-    } else if (textContent.length === 0) {
+    let textContent = $("#todolist").val();
+    console.log(textContent.length)
+     if (textContent.length === 0) {
       $('#error-message-empty').slideDown();
       return;
     }
     //send data to server with ajax  and send a get request after
+    $('#error-message-empty').hide();
     const formData = $(this).serialize();
     $.ajax({
-      url: '/tweets',
+      url: '/users/1/new',
       data: formData,
       type: 'POST'
     })
-    .then(loadTweets)
-    .then(() => {
-      $("#tweet-text").val('');
-      $('.counter').html(140);
+    .done(function() {
+      window.location='/';
     })
   })
 });
