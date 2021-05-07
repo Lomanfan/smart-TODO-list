@@ -71,7 +71,7 @@
             <div class="everyTodo <%= todoItem.type %>">
               <table>
                 <tr>
-                  <td>
+                  <td id="todo-text">
                     <tag>
                       <%=todoItem.user_input %>
                     </tag>
@@ -102,7 +102,7 @@
                       id="changeCate">
                       <select class="btn btn-danger dropdown-toggle" name="categoryDropdown" class="categoryDropdown"
                         method="PUT">
-
+                
                         <% for(let type of types) { %>
                           <option type="hidden" value="<%=type.id%>" id="<%=type.id%>">
                             <%=type.type%>
