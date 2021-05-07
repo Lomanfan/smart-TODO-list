@@ -56,21 +56,24 @@
             <button type="submit" class="btn btn-warning btn-lg">Add</button>
           </form>
         </div>
+        <div class="error-message">
+          <p id="error-message-empty">empty! please say something</p>
+        </div>
+
       </header>
     </div>
     <div class="left"></div>
-      <div class="middle">
-        <div>
-          <h3>My List</h3>
-            <table>
-              <% if (userTodoLists.length> 0) { %>
-                <% for(let todoItem of userTodoLists) { %>
-                  <div class="everyTodo <%= todoItem.type %>">
-                   <!-- <table> -->
-                   <tr>
-                    <td>
-                      <tag>
-                        <%=todoItem.user_input %>
+    <div class="middle">
+      <!-- <div> -->
+        <h2>My List</h2>
+        <% if (userTodoLists.length> 0) { %>
+          <% for(let todoItem of userTodoLists) { %>
+            <div class="everyTodo <%= todoItem.type %>">
+              <table>
+                <tr>
+                  <td id="todo-text">
+                    <tag>
+                      <%=todoItem.user_input %>
                     </tag>
                   <!-- <div class="list"> -->
                   </td>
@@ -82,10 +85,10 @@
                       id="changeCate">
                       <select class="btn btn-danger dropdown-toggle" name="categoryDropdown" class="categoryDropdown"
                         method="PUT">
-                        <option></option>
-                          <% for(let type of types) { %>
-                            <option type="hidden" value="<%=type.id%>" id="<%=type.id%>">
-                              <%=type.type%>
+
+                        <% for(let type of types) { %>
+                          <option type="hidden" value="<%=type.id%>" id="<%=type.id%>">
+                            <%=type.type%>
                           </option>
                         <% } %>
                       </select>
