@@ -87,10 +87,14 @@ body {
 }
 
 table {
-  margin-top: 15px;
   width: 100%;
-  margin-bottom: 100px;
-  // justify-self: stretch;
+  margin-bottom: 15px;
+  align-items: center;
+}
+
+th,
+td {
+  padding: 5px;
 }
 
 #lists-body {

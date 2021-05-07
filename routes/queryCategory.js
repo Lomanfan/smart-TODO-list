@@ -35,5 +35,3 @@ const queryCategory = function(user_id, category_id, user_input) {
 };
 exports.queryCategory = queryCategory;
 console.log(queryCategory(1, 1, 'steak'));
-
-

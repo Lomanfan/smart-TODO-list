@@ -53,36 +53,37 @@
       </header>
     </div>
     <div class="left"></div>
-    <div class="middle">
-      <div>
-        <h2>My List</h2>
-        <table>
-          <% if (userTodoLists.length> 0) { %>
-            <% for(let todoItem of userTodoLists) { %>
-              <div class="everyTodo <%= todoItem.type %>">
-                <tr>
-                  <td>
-                    <tag>
-                      <%=todoItem.user_input %>
+      <div class="middle">
+        <div>
+          <h3>My List</h3>
+            <table>
+              <% if (userTodoLists.length> 0) { %>
+                <% for(let todoItem of userTodoLists) { %>
+                  <div class="everyTodo <%= todoItem.type %>">
+                   <!-- <table> -->
+                   <tr>
+                    <td>
+                      <tag>
+                        <%=todoItem.user_input %>
                     </tag>
-                    <!-- <div class="list"> -->
+                  <!-- <div class="list"> -->
                   </td>
-                  <td>
-                    <%=todoItem.type %>
-                  </td>
+                    <td>
+                      <%=todoItem.type %>
+                    </td>
                   <td>
                     <form method="POST" action="/users/<%= todoItem.user_id %>/<%= todoItem.todolist_id %>?_method=PUT"
                       id="changeCate">
                       <select class="btn btn-danger dropdown-toggle" name="categoryDropdown" class="categoryDropdown"
                         method="PUT">
                         <option></option>
-                        <% for(let type of types) { %>
-                          <option type="hidden" value="<%=type.id%>" id="<%=type.id%>">
-                            <%=type.type%>
+                          <% for(let type of types) { %>
+                            <option type="hidden" value="<%=type.id%>" id="<%=type.id%>">
+                              <%=type.type%>
                           </option>
-                          <% } %>
+                        <% } %>
                       </select>
-                      <button type="submit" class="button is-primary is-rounded"
+                        <button type="submit" class="button is-primary is-rounded"
                         style="margin-bottom:10px"><strong>Update</strong></button>
                     </form>
                   </td>
@@ -95,21 +96,22 @@
                     </form>
                   </td>
                 </tr>
+              <!-- </table> -->
               </div>
               <% } %>
-                <% } %>
+            <% } %>
         </table>
       </div>
     </div>
     <div class="right"></div>
-    <div class="footer">
-      <p>
+      <div class="footer">
+        <p>
         smartList created by Jessie Pei, Kiup Kim, Loman Fan @ 2021 LHL
       </p>
     </div>
 
-    <script type="text/javascript" src="/scripts/app.js"></script>
-    <!-- <script type="./routes/users.js"></script> -->
+    <script type="text/javascript" src="public/scripts/app.js"></script>
+    <script type="text/javascript" src="routes/users.js"></script>
     <!-- Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
       integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
