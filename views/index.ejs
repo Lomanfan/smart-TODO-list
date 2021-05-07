@@ -19,6 +19,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Ultra&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
     integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
@@ -63,7 +64,7 @@
     </div>
     <div class="left"></div>
     <div class="middle">
-      <div>
+      <!-- <div> -->
         <h2>My List</h2>
         <% if (userTodoLists.length> 0) { %>
           <% for(let todoItem of userTodoLists) { %>
@@ -77,7 +78,24 @@
                     <!-- <div class="list"> -->
                   </td>
                   <td>
-                    <%=todoItem.type %>
+                    <%if (todoItem.type === 'to eat') { %>
+                      <i class="fas fa-utensils"></i>
+                   <% } %>
+                  </td>
+                  <td>
+                    <%if (todoItem.type === 'to read') { %>
+                      <i class="fas fa-book"></i>
+                   <% } %>
+                  </td>
+                  <td>
+                    <%if (todoItem.type === 'to watch') { %>
+                      <i class="fas fa-video"></i>
+                   <% } %>
+                  </td>
+                  <td>
+                    <%if (todoItem.type === 'to shop') { %>
+                      <i class="fas fa-shopping-cart"></i>
+                   <% } %>
                   </td>
                   <td>
                     <form method="POST" action="/users/<%= todoItem.user_id %>/<%= todoItem.todolist_id %>?_method=PUT"
@@ -108,7 +126,7 @@
               </div>
               <% } %>
                 <% } %>
-      </div>
+      <!-- </div> -->
     </div>
     <div class="right"></div>
     <div class="footer">
