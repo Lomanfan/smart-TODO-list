@@ -2,9 +2,7 @@
 <html lang="en">
 
 <head>
-  <!-- External JS -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
   <!-- Meta Information -->
   <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0' />
   <title>smartList</title>
@@ -14,8 +12,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
-  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+  <!-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
   <link href="https://fonts.googleapis.com/css2?family=Ultra&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300&display=swap" rel="stylesheet">
@@ -25,6 +23,8 @@
     integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
   <!-- App CSS -->
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+  <!-- External JS
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script> -->
 </head>
 
 <body class="all-background">
@@ -50,7 +50,7 @@
     <div class="header">
       <header>
         <div>
-          <form method="POST" action="users/<%= user.user_id %>/new">
+          <form method="POST" action="users/<%= user.user_id %>/new" class="addNewTodo">
             <input name="todolist" id="todolist" class="justify-content-center" type="text"
               placeholder="Something you'd like to add">
             <button type="submit" class="btn btn-warning btn-lg">Add</button>
@@ -65,68 +65,67 @@
     <div class="left"></div>
     <div class="middle">
       <!-- <div> -->
-        <h2>My List</h2>
-        <% if (userTodoLists.length> 0) { %>
-          <% for(let todoItem of userTodoLists) { %>
-            <div class="everyTodo <%= todoItem.type %>">
-              <table>
-                <tr>
-                  <td id="todo-text">
-                    <tag>
-                      <%=todoItem.user_input %>
-                    </tag>
-                    <!-- <div class="list"> -->
+      <h2>My List</h2>
+      <% if (userTodoLists.length> 0) { %>
+        <% for(let todoItem of userTodoLists) { %>
+          <div class="everyTodo <%= todoItem.type %>">
+            <table>
+              <tr>
+                <%if (todoItem.type==='to eat' ) { %>
+                  <td class="icon">
+                    <i class="fas fa-utensils"></i>
                   </td>
-                  <td>
-                    <%if (todoItem.type === 'to eat') { %>
-                      <i class="fas fa-utensils"></i>
-                   <% } %>
+                    <% } %>
+                <%if (todoItem.type==='to read' ) { %>
+                  <td class="icon">
+                    <i class="fas fa-book"></i>
                   </td>
-                  <td>
-                    <%if (todoItem.type === 'to read') { %>
-                      <i class="fas fa-book"></i>
-                   <% } %>
+                    <% } %>
+                    <%if (todoItem.type==='to watch' ) { %>
+                      <td class="icon">
+                    <i class="fas fa-video"></i>
                   </td>
-                  <td>
-                    <%if (todoItem.type === 'to watch') { %>
-                      <i class="fas fa-video"></i>
-                   <% } %>
+                    <% } %>
+                    <%if (todoItem.type==='to shop' ) { %>
+                      <td class="icon">
+                    <i class="fas fa-shopping-cart"></i>
                   </td>
-                  <td>
-                    <%if (todoItem.type === 'to shop') { %>
-                      <i class="fas fa-shopping-cart"></i>
-                   <% } %>
-                  </td>
-                  <td>
-                    <form method="POST" action="/users/<%= todoItem.user_id %>/<%= todoItem.todolist_id %>?_method=PUT"
-                      id="changeCate">
-                      <select class="btn btn-danger dropdown-toggle" name="categoryDropdown" class="categoryDropdown"
-                        method="PUT">
-                
-                        <% for(let type of types) { %>
-                          <option type="hidden" value="<%=type.id%>" id="<%=type.id%>">
-                            <%=type.type%>
-                          </option>
-                          <% } %>
-                      </select>
-                      <button type="submit" class="button is-primary is-rounded"
-                        style="margin-bottom:10px"><strong>Update</strong></button>
-                    </form>
-                  </td>
-                  <td>
-                    <form action="/users/<%= todoItem.user_id %>/todolist/<%= todoItem.todolist_id %>?_method=DELETE"
-                      method="POST">
-                      <button type="submit" class="btn btn-warning btn-circle"><i
-                          class="glyphicon glyphicon-remove"></i>
-                      </button>
-                    </form>
-                  </td>
-                </tr>
-              </table>
-              </div>
-              <% } %>
-                <% } %>
-      <!-- </div> -->
+                    <% } %>
+                <td id="todo-text">
+                  <tag>
+                    <%=todoItem.user_input %>
+                  </tag>
+                  <!-- <div class="list"> -->
+                </td>
+                <td>
+                  <form method="POST" action="/users/<%= todoItem.user_id %>/<%= todoItem.todolist_id %>?_method=PUT"
+                    id="changeCate">
+                    <select class="btn btn-danger dropdown-toggle" name="categoryDropdown" class="categoryDropdown"
+                      method="PUT">
+
+                      <% for(let type of types) { %>
+                        <option type="hidden" value="<%=type.id%>" id="<%=type.id%>">
+                          <%=type.type%>
+                        </option>
+                        <% } %>
+                    </select>
+                    <button type="submit" class="button is-primary is-rounded"
+                      style="margin-bottom:10px"><strong>Update</strong></button>
+                  </form>
+                </td>
+                <td>
+                  <form action="/users/<%= todoItem.user_id %>/todolist/<%= todoItem.todolist_id %>?_method=DELETE"
+                    method="POST">
+                    <button type="submit" class="btn btn-warning btn-circle"><i class="glyphicon glyphicon-remove"></i>
+                    </button>
+                  </form>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <% } %>
+            <% } %>
+              <!-- </div> -->
     </div>
     <div class="right"></div>
     <div class="footer">
@@ -135,12 +134,10 @@
       </p>
     </div>
 
-    <script type="text/javascript" src="/scripts/app.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
     <!-- <script type="./routes/users.js"></script> -->
     <!-- Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-      crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
       integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
       crossorigin="anonymous"></script>
@@ -148,6 +145,7 @@
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
       crossorigin="anonymous"></script>
 
+    <script type="text/javascript" src="/scripts/app.js"></script>
 </body>
 
 </html>
