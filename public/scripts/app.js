@@ -1,6 +1,4 @@
 //buttons to sort todo-list by category type after DOM is ready
-
-//buttons to sort todo-list by category type after DOM is ready
 $(() => {
   $(".sortCategory").on('click',function(){
     let sortCate = $(this).text().toLocaleLowerCase();
@@ -9,14 +7,13 @@ $(() => {
     } else {
     sortCate = sortCate.split(' ')[1];
     $(".everyTodo").hide();
-    $(".everyTodo").filter(`.${sortCate}`).css( "display", "block" );
+    $(".everyTodo").filter(`.${sortCate}`).show();
     }
   });
 
   $(".addNewTodo").submit(function (event) {
     event.preventDefault();
     let textContent = $("#todolist").val();
-    console.log(textContent.length)
      if (textContent.length === 0) {
       $('#error-message-empty').slideDown();
       return;

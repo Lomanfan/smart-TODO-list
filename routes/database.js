@@ -10,7 +10,7 @@ const pool = new Pool({
 });
 
 pool.connect();
-
+//get all todolist in the database
 const getToDo = (user) => {
   const queryParams = [];
   queryParams.push(`${user.user_id}`);
@@ -21,32 +21,28 @@ const getToDo = (user) => {
   where users.id = $${queryParams.length}
   order by todolist.id DESC;`
   return pool.query(queryString, queryParams).then((data) => {
-    console.dir((data.rows))
   return  data.rows;
 });
 }
 exports.getTodo = getToDo;
 
+//delete one todo list by its id
 const deleteToDoById = (id) => {
   const queryParams = [];
-  // console.log(id);
   queryParams.push(`${id}`);
-//   DELETE FROM links
-// WHERE id = 10;
   let queryString = `DELETE
   FROM todolist
   where id = $${queryParams.length}
   RETURNING *;`
   return pool.query(queryString, queryParams)
   .then((res) => {
-    console.log('results after delete',res.rows[0])
-    return getToDo(res.rows[0])
+    return getToDo(res.rows[0]);
   });
 }
 
 exports.deleteToDoById = deleteToDoById;
 
-
+//to change a category type of a todo list by its id
 const changeCateById = (userId, todoId, cateId) => {
   const queryParams = [];
   queryParams.push(`${userId}`, `${todoId}`, `${cateId}`);
@@ -56,14 +52,13 @@ const changeCateById = (userId, todoId, cateId) => {
 
   return pool.query(queryString, queryParams)
     .then((res) => {
-      console.log("aaaaaaaaa",res.rows[0])
       return getToDo(res.rows[0])
     });
 
 }
 exports.changeCateById = changeCateById;
 
-
+//get the category id by category type
 const getIdByName = (cateName) => {
   const queryParams = [];
   queryParams.push(`${cateName}`);
@@ -71,14 +66,12 @@ const getIdByName = (cateName) => {
   FROM category
   where category.type = $${queryParams.length};`
   return pool.query(queryString, queryParams).then((data) => {
-    // console.log('hi');
-    // console.dir((data.rows))
   return data.rows;
 });
 }
 exports.getIdByName = getIdByName;
 
-
+//get all type in category table
 const getAllCategories = () => {
   return pool.query(`SELECT * FROM category;`)
   .then((data) => data.rows)

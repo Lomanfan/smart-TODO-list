@@ -3,7 +3,7 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
   background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/38816/image-from-rawpixel-id-2210775-jpeg.jpg);
-  background-size: cover;
+  background-size: contain;
   width: 100%;
   min-height: 100vh;
   display: grid;
