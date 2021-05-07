@@ -6,30 +6,34 @@ $(() => {
     if (sortCate ==='all') {
       $(".everyTodo").css( "display", "block" );
     } else {
-      //eat
     sortCate = sortCate.split(' ')[1];
-    console.log(sortCate);
     $(".everyTodo").hide();
-    console.log(sortCate)
-    console.log($(".everyTodo").filter(`.${sortCate}`))
     $(".everyTodo").filter(`.${sortCate}`).css( "display", "block" );
-    console.log($(".everyTodo").filter(`.${sortCate}`));
     }
   });
 
-  $(".checkbox").each(function(){
-  $("input:checkbox").on('change',function(event){
-    let todoId = event.target.id;
-    console.log(todoId);
-    if($(".checkbox").prop("checked")) {
-      $(".checkbox").prop("checked", false);
-      $(".todoText").css("display","none")
-    } else{
-
-      $(".checkbox").prop("checked", true);
-      $(".todoText").css("display","block")
+  $(".new-tweet-form").submit(function (event) {
+    event.preventDefault();
+    let textContent = $("#tweet-text").val();
+    if (textContent.length > 140) {
+      $('#error-message-over').slideDown();
+      return;
+    } else if (textContent.length === 0) {
+      $('#error-message-empty').slideDown();
+      return;
     }
-  })
+    //send data to server with ajax  and send a get request after
+    const formData = $(this).serialize();
+    $.ajax({
+      url: '/tweets',
+      data: formData,
+      type: 'POST'
+    })
+    .then(loadTweets)
+    .then(() => {
+      $("#tweet-text").val('');
+      $('.counter').html(140);
+    })
   })
 });
 
