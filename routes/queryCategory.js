@@ -5,7 +5,7 @@ const pool = new Pool({
   host: 'localhost',
   database: 'midterm'
 });
-
+// to insert new todolist to database
 const queryCategory = function(user_id, category_id, user_input) {
   return pool.query(
   `INSERT INTO todolist (
@@ -21,12 +21,8 @@ const queryCategory = function(user_id, category_id, user_input) {
   RETURNING *;`,[
     user_id, category_id, user_input
   ])
-  // INSERT INTO todolist (user_id, category_id, user_input, remind_me_at, is_completed)
-  // VALUES (1, 4, 'sandles', '2021-05-21', FALSE),
-  // INSERT INTO category (type) VALUES ('to shop');
 
   .then(res => {
-    // console.log("res:", res.rows[0]);
     return res.rows[0];
   })
   .catch(err => {
@@ -34,4 +30,4 @@ const queryCategory = function(user_id, category_id, user_input) {
   });
 };
 exports.queryCategory = queryCategory;
-console.log(queryCategory(1, 1, 'steak'));
+

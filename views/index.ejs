@@ -12,8 +12,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
-
-  <!-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
   <link href="https://fonts.googleapis.com/css2?family=Ultra&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300&display=swap" rel="stylesheet">
@@ -28,11 +26,6 @@
 </head>
 
 <body class="all-background">
-  <!-- //TODO: move the inline style to css file
-    //TODO: make the test and the category in the same line for each todolist
-    //TODO: change the style of buttons in todolist
-    //TODO: show the user name on the page instead of login button in the header
-    //TODO: style the page as pretty as we can -->
   <div>
     <nav id="container" class="navbar navbar-light justify-content-between">
       <a class="navbar-brand">SmartList</a>
@@ -64,7 +57,6 @@
     </div>
     <div class="left"></div>
     <div class="middle">
-      <!-- <div> -->
       <h2>My List</h2>
       <% if (userTodoLists.length> 0) { %>
         <% for(let todoItem of userTodoLists) { %>
@@ -95,7 +87,7 @@
                   <tag>
                     <%=todoItem.user_input %>
                   </tag>
-                  <!-- <div class="list"> -->
+
                 </td>
                 <td>
                   <form method="POST" action="/users/<%= todoItem.user_id %>/<%= todoItem.todolist_id %>?_method=PUT"
@@ -125,7 +117,7 @@
           </div>
           <% } %>
             <% } %>
-              <!-- </div> -->
+
     </div>
     <div class="right"></div>
       <div class="footer">
@@ -136,7 +128,6 @@
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-    <!-- <script type="./routes/users.js"></script> -->
     <!-- Bootstrap JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
       integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
