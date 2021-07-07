@@ -46,7 +46,7 @@ module.exports = (db) => {
 
   //creat a new todo list
   router.post('/:user_id/new', (req, res) => {
-    console.log(req.params);
+    
     const user_id = parseInt(req.params.user_id);
     const input = req.body.todolist;
 
