@@ -107,7 +107,7 @@
                 </td>
                 <td>
                   <form action="/users/<%= todoItem.user_id %>/todolist/<%= todoItem.todolist_id %>?_method=DELETE"
-                    method="POST">
+                    method="POST" class="delete-todo" id="<%= todoItem.todolist_id %>">
                     <button type="submit" class="btn btn-warning btn-circle"><i class="glyphicon glyphicon-remove"></i>
                     </button>
                   </form>
