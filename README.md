@@ -1,4 +1,4 @@
-LHL Node Skeleton
+Smart list
 =========
 
 ## Project Setup
