@@ -25,3 +25,5 @@ smartList is a single page web app which can auto categorize users' todo list in
 - Node 10.x or above
 - NPM 5.x or above
 - PG 6.x
+
+## Screenshots
