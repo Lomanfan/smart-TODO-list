@@ -101,6 +101,7 @@ table {
   margin-right: 50px;
   width: 780px;
   font-size: 23px;
+  font-weight: bold;
 }
 
 div #list {
@@ -148,7 +149,7 @@ div #list {
 
 #todo-text {
   width: 150px;
-  // font-weight: bold;
+  font-weight: bold;
 }
 .error-message{
   color: red;
