@@ -5,3 +5,4 @@ public/styles
 *.sqlite3
 apikey.txt
 todolist-googleApi.json
+.DS_Store

@@ -63,6 +63,12 @@
           <div class="everyTodo <%= todoItem.type %>">
             <table>
               <tr>
+                <td id="todo-text">
+                  <tag>
+                    <%=todoItem.user_input %>
+                  </tag>
+
+                </td>
                 <%if (todoItem.type==='to eat' ) { %>
                   <td class="icon">
                     <i class="fas fa-utensils"></i>
@@ -83,17 +89,12 @@
                     <i class="fas fa-shopping-cart"></i>
                   </td>
                     <% } %>
-                <td id="todo-text">
-                  <tag>
-                    <%=todoItem.user_input %>
-                  </tag>
-
-                </td>
                 <td>
                   <form method="POST" action="/users/<%= todoItem.user_id %>/<%= todoItem.todolist_id %>?_method=PUT"
                     id="changeCate">
                     <select class="btn btn-danger dropdown-toggle" name="categoryDropdown" class="categoryDropdown"
                       method="PUT">
+                      <option selected="true" disabled="disabled" value="">Change</option>
 
                       <% for(let type of types) { %>
                         <option type="hidden" value="<%=type.id%>" id="<%=type.id%>">
@@ -107,7 +108,7 @@
                 </td>
                 <td>
                   <form action="/users/<%= todoItem.user_id %>/todolist/<%= todoItem.todolist_id %>?_method=DELETE"
-                    method="POST">
+                    method="POST" class="delete-todo" id="<%= todoItem.todolist_id %>">
                     <button type="submit" class="btn btn-warning btn-circle"><i class="glyphicon glyphicon-remove"></i>
                     </button>
                   </form>
